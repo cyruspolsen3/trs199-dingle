@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poetry Memorization — TRS 199 Dingle 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:        #0e0f0d;
+  --bg2:       #161712;
+  --bg3:       #1d1e19;
+  --bg4:       #252620;
+  --ruled:     #2a2b24;
+  --gold:      #c9a84c;
+  --gold-dim:  #8a6e2f;
+  --gold-pale: #e8d49a;
+  --ivory:     #f0ead8;
+  --ivory-dim: #a09880;
+  --ivory-hint:#504d42;
+  --teal:      #4a9e82;
+  --teal-dim:  #2d6653;
+  --coral:     #b8613a;
+  --purple:    #7c6abf;
+  --r:         6px;
+  --r-lg:      10px;
+  --font-display: 'Cinzel', serif;
+  --font-body:    'EB Garamond', Georgia, serif;
+  --font-mono:    'Source Code Pro', monospace;
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ivory);
+  font-family:var(--font-body);
+  font-size:18px;
+  line-height:1.7;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── GRAIN TEXTURE ─────────────────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+  pointer-events:none;
+  z-index:1000;
+  opacity:0.4;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────────── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+/* ── LAYOUT ────────────────────────────────────────────────────── */
+.shell{max-width:860px;margin:0 auto;padding:0 1.5rem 4rem}
+
+/* ── MASTHEAD ──────────────────────────────────────────────────── */
+.masthead{
+  padding:3.5rem 0 2rem;
+  text-align:center;
+  position:relative;
+}
+.masthead::after{
+  content:'';
+  display:block;
+  width:120px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);
+  margin:2rem auto 0;
+}
+.masthead .course-id{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.2em;
+  color:var(--gold-dim);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  animation:fade-up 0.6s var(--ease-out) both;
+}
+.masthead h1{
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem,4vw,2.6rem);
+  font-weight:400;
+  color:var(--gold);
+  letter-spacing:0.04em;
+  line-height:1.2;
+  animation:fade-up 0.7s var(--ease-out) 0.1s both;
+}
+.masthead .sub{
+  font-family:var(--font-body);
+  font-style:italic;
+  font-size:1rem;
+  color:var(--ivory-dim);
+  margin-top:0.5rem;
+  animation:fade-up 0.7s var(--ease-out) 0.2s both;
+}
+.masthead .progress-summary{
+  display:inline-flex;align-items:center;gap:1.5rem;
+  margin-top:1.5rem;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ivory-hint);
+  letter-spacing:0.08em;
+  animation:fade-up 0.7s var(--ease-out) 0.3s both;
+}
+.progress-summary span{color:var(--gold-pale)}
+
+/* ── POET NAV ──────────────────────────────────────────────────── */
+.poet-nav{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+  gap:8px;
+  margin:2rem 0;
+  animation:fade-up 0.7s var(--ease-out) 0.35s both;
+}
+.poet-btn{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r);
+  padding:10px 8px;
+  cursor:pointer;
+  transition:border-color 0.2s,background 0.2s,transform 0.15s;
+  text-align:center;
+}
+.poet-btn:hover{border-color:var(--gold-dim);background:var(--bg4);transform:translateY(-1px)}
+.poet-btn.active{border-color:var(--gold);background:var(--bg4)}
+.poet-btn .pb-day{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--ivory-hint);
+  letter-spacing:0.1em;
+  margin-bottom:4px;
+}
+.poet-btn .pb-name{
+  font-family:var(--font-display);
+  font-size:11px;
+  color:var(--ivory-dim);
+  line-height:1.3;
+}
+.poet-btn.active .pb-name{color:var(--gold)}
+.poet-btn .pb-done{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--teal-dim);
+  margin:5px auto 0;
+  opacity:0;transition:opacity 0.3s;
+}
+.poet-btn.done .pb-done{opacity:1}
+
+/* ── MAIN CARD ─────────────────────────────────────────────────── */
+.poem-workspace{
+  display:none;
+  animation:fade-up 0.5s var(--ease-out) both;
+}
+.poem-workspace.visible{display:block}
+
+/* Poet header */
+.poet-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:1rem;
+  padding:1.5rem 0 1rem;
+  border-bottom:1px solid var(--ruled);
+  margin-bottom:2rem;
+}
+.poet-header-left{}
+.poet-day-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.15em;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:0.3rem;
+}
+.poet-name{
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  font-weight:400;
+  color:var(--gold);
+  letter-spacing:0.04em;
+}
+.poem-title{
+  font-family:var(--font-body);
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--ivory-dim);
+  margin-top:0.2rem;
+}
+.poet-tradition{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  color:var(--ivory-hint);
+  text-transform:uppercase;
+  margin-top:0.4rem;
+}
+.mastery-ring{
+  flex-shrink:0;
+  width:56px;height:56px;
+  position:relative;
+}
+.mastery-ring svg{transform:rotate(-90deg)}
+.mastery-ring .ring-label{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);
+  font-size:12px;
+  font-weight:400;
+  color:var(--gold-pale);
+}
+
+/* ── TABS ──────────────────────────────────────────────────────── */
+.mode-tabs{
+  display:flex;gap:0;
+  border-bottom:1px solid var(--ruled);
+  margin-bottom:1.75rem;
+}
+.mode-tab{
+  flex:1;
+  background:none;border:none;
+  border-bottom:2px solid transparent;
+  padding:9px 4px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ivory-hint);
+  cursor:pointer;
+  transition:color 0.15s,border-color 0.15s;
+}
+.mode-tab:hover{color:var(--ivory-dim)}
+.mode-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── TAB PANELS ────────────────────────────────────────────────── */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── READ PANEL ────────────────────────────────────────────────── */
+.poem-text-block{
+  position:relative;
+  background:var(--bg2);
+  border:1px solid var(--ruled);
+  border-left:3px solid var(--gold-dim);
+  border-radius:0 var(--r-lg) var(--r-lg) 0;
+  padding:2rem 2rem 1.5rem;
+  margin-bottom:1.5rem;
+}
+.poem-lines{
+  font-family:var(--font-body);
+  font-size:1.15rem;
+  line-height:2;
+  color:var(--ivory);
+  white-space:pre-line;
+}
+.poem-line-wrap{
+  position:relative;
+  padding-left:2rem;
+  counter-increment:line;
+}
+.poem-line-wrap::before{
+  content:counter(line);
+  position:absolute;left:0;
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--ivory-hint);
+  top:0.35em;
+}
+.poem-lines-inner{counter-reset:line}
+
+.context-note{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:1.2rem 1.4rem;
+  margin-bottom:1.5rem;
+}
+.context-note .cn-label{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.12em;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:0.5rem;
+}
+.context-note p{
+  font-size:0.95rem;
+  color:var(--ivory-dim);
+  line-height:1.65;
+  font-style:italic;
+}
+
+/* ── LISTEN PANEL ──────────────────────────────────────────────── */
+.listen-prompt{
+  text-align:center;
+  padding:1.5rem 0;
+  color:var(--ivory-dim);
+  font-style:italic;
+  font-size:0.95rem;
+  margin-bottom:1.5rem;
+}
+.listen-step{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:1.2rem 1.4rem;
+  margin-bottom:0.75rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  cursor:pointer;
+  transition:border-color 0.2s,background 0.2s;
+}
+.listen-step:hover{border-color:var(--gold-dim);background:var(--bg4)}
+.listen-step.done{border-color:var(--teal-dim);background:var(--bg2)}
+.ls-num{
+  width:28px;height:28px;flex-shrink:0;
+  border-radius:50%;
+  border:1px solid var(--ruled);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ivory-hint);
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+  margin-top:2px;
+}
+.listen-step.done .ls-num{
+  border-color:var(--teal);
+  color:var(--teal);
+  background:rgba(74,158,130,0.1);
+}
+.ls-body{}
+.ls-title{
+  font-family:var(--font-body);
+  font-weight:500;
+  font-size:1rem;
+  color:var(--ivory);
+  margin-bottom:0.3rem;
+}
+.ls-desc{
+  font-size:0.9rem;
+  color:var(--ivory-dim);
+  line-height:1.55;
+}
+
+/* ── HIDE PANEL ────────────────────────────────────────────────── */
+.hide-controls{
+  display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:1.5rem;
+}
+.hide-controls label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ivory-hint);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.hide-select{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r);
+  padding:6px 10px;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ivory-dim);
+  cursor:pointer;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.hide-select:focus{border-color:var(--gold-dim)}
+option{background:var(--bg3)}
+
+.cloze-btn{
+  background:var(--bg3);
+  border:1px solid var(--gold-dim);
+  border-radius:var(--r);
+  padding:7px 14px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gold);
+  cursor:pointer;
+  transition:background 0.15s,transform 0.1s;
+}
+.cloze-btn:hover{background:var(--bg4);transform:translateY(-1px)}
+.cloze-btn:active{transform:scale(0.97)}
+
+.cloze-poem{
+  background:var(--bg2);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:2rem;
+  font-family:var(--font-body);
+  font-size:1.1rem;
+  line-height:2.1;
+  color:var(--ivory);
+  white-space:pre-line;
+  margin-bottom:1.5rem;
+  min-height:120px;
+}
+.cloze-blank{
+  display:inline-block;
+  min-width:80px;
+  border-bottom:1px solid var(--gold-dim);
+  cursor:pointer;
+  color:transparent;
+  background:rgba(201,168,76,0.08);
+  border-radius:2px;
+  padding:0 4px;
+  transition:color 0.2s,background 0.2s;
+  vertical-align:middle;
+  font-style:italic;
+}
+.cloze-blank.revealed{
+  color:var(--gold-pale);
+  background:rgba(201,168,76,0.15);
+}
+.cloze-hint{
+  font-size:0.82rem;
+  color:var(--ivory-hint);
+  margin-bottom:1.5rem;
+  font-family:var(--font-mono);
+  letter-spacing:0.06em;
+}
+
+/* ── RECALL PANEL ──────────────────────────────────────────────── */
+.recall-stage{
+  background:var(--bg2);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:2rem;
+  margin-bottom:1rem;
+  min-height:180px;
+  position:relative;
+}
+.recall-prompt{
+  font-style:italic;
+  color:var(--ivory-hint);
+  font-size:0.95rem;
+  margin-bottom:1.5rem;
+  text-align:center;
+}
+.recall-input{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--ruled);
+  color:var(--ivory);
+  font-family:var(--font-body);
+  font-size:1.05rem;
+  line-height:1.9;
+  outline:none;
+  resize:none;
+  min-height:140px;
+  padding:0 0 8px;
+  transition:border-color 0.2s;
+}
+.recall-input:focus{border-bottom-color:var(--gold-dim)}
+.recall-input::placeholder{color:var(--ivory-hint);font-style:italic}
+
+.recall-actions{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:1.5rem;
+}
+.r-btn{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r);
+  padding:8px 16px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ivory-dim);
+  cursor:pointer;
+  transition:border-color 0.2s,color 0.2s,background 0.2s;
+}
+.r-btn:hover{border-color:var(--gold-dim);color:var(--gold);background:var(--bg4)}
+.r-btn.primary{border-color:var(--gold-dim);color:var(--gold)}
+.r-btn.primary:hover{background:rgba(201,168,76,0.1)}
+
+.diff-view{
+  display:none;
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:1.5rem;
+  margin-bottom:1rem;
+  font-family:var(--font-body);
+  font-size:1rem;
+  line-height:1.9;
+  white-space:pre-line;
+}
+.diff-view.visible{display:block}
+.diff-match{color:var(--ivory)}
+.diff-add{color:var(--teal);background:rgba(74,158,130,0.12);padding:0 2px;border-radius:2px}
+.diff-del{color:var(--coral);text-decoration:line-through;background:rgba(184,97,58,0.12);padding:0 2px;border-radius:2px}
+
+.recall-score{
+  display:none;
+  align-items:center;gap:12px;
+  padding:1rem 1.25rem;
+  background:var(--bg3);
+  border-radius:var(--r-lg);
+  border:1px solid var(--ruled);
+  margin-bottom:1rem;
+  font-family:var(--font-mono);
+  font-size:13px;
+}
+.recall-score.visible{display:flex}
+.score-pct{
+  font-size:1.5rem;
+  font-weight:500;
+  color:var(--gold);
+}
+.score-label{color:var(--ivory-dim)}
+.score-encouragement{
+  font-style:normal;
+  font-family:var(--font-body);
+  font-size:0.9rem;
+  color:var(--ivory-dim);
+  margin-left:auto;
+  font-style:italic;
+}
+
+/* ── AUDIT PANEL ───────────────────────────────────────────────── */
+.audit-form{
+  background:var(--bg2);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+  padding:1.5rem;
+  margin-bottom:1rem;
+}
+.audit-field{margin-bottom:1.25rem}
+.audit-field label{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.12em;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.audit-textarea{
+  width:100%;
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r);
+  padding:10px 12px;
+  color:var(--ivory-dim);
+  font-family:var(--font-body);
+  font-size:0.95rem;
+  line-height:1.6;
+  resize:vertical;
+  min-height:60px;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.audit-textarea:focus{border-color:var(--gold-dim)}
+.audit-textarea::placeholder{color:var(--ivory-hint);font-style:italic}
+.audit-save-btn{
+  background:rgba(74,158,130,0.12);
+  border:1px solid var(--teal-dim);
+  border-radius:var(--r);
+  padding:9px 20px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--teal);
+  cursor:pointer;
+  transition:background 0.15s;
+}
+.audit-save-btn:hover{background:rgba(74,158,130,0.2)}
+.audit-saved-msg{
+  display:none;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--teal);
+  letter-spacing:0.1em;
+  margin-left:12px;
+  vertical-align:middle;
+}
+
+/* ── PROGRESS BAR ──────────────────────────────────────────────── */
+.overall-progress{
+  margin:2.5rem 0 0;
+  padding:1.5rem;
+  background:var(--bg2);
+  border:1px solid var(--ruled);
+  border-radius:var(--r-lg);
+}
+.op-label{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.12em;
+  color:var(--ivory-hint);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.poet-progress-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+.pp-item{
+  background:var(--bg3);
+  border:1px solid var(--ruled);
+  border-radius:var(--r);
+  padding:10px 12px;
+}
+.pp-name{
+  font-family:var(--font-display);
+  font-size:12px;
+  color:var(--ivory-dim);
+  margin-bottom:6px;
+}
+.pp-bar-wrap{
+  height:3px;
+  background:var(--bg4);
+  border-radius:2px;
+  overflow:hidden;
+  margin-bottom:5px;
+}
+.pp-bar{
+  height:100%;
+  background:var(--gold-dim);
+  border-radius:2px;
+  transition:width 0.6s var(--ease-out);
+}
+.pp-pct{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--ivory-hint);
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────── */
+@keyframes fade-up{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulse-gold{
+  0%,100%{opacity:0.6}50%{opacity:1}
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────── */
+@media(max-width:600px){
+  .poet-nav{grid-template-columns:repeat(4,1fr)}
+  .poem-text-block{padding:1.25rem}
+  .poet-header{flex-direction:column}
+  .recall-actions{flex-direction:column}
+}
+
+/* ── FOOTER ────────────────────────────────────────────────────── */
+.site-footer{
+  border-top:1px solid var(--ruled);
+  margin-top:3rem;
+  padding:1.5rem 0;
+  text-align:center;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  color:var(--ivory-hint);
+  text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="course-id">TRS 199 · Sacred Heart University · Dingle 2026</div>
+  <h1>Poetry Memorization Portal</h1>
+  <p class="sub">Pilgrimage, Poetry &amp; Place — The Dingle Peninsula as Sacred Text</p>
+  <div class="progress-summary">
+    <span>Poets: <span id="poets-done">0</span> / 8 begun</span>
+    <span>Recalls: <span id="total-recalls">0</span> completed</span>
+    <span>Mastery: <span id="avg-mastery">0</span>%</span>
+  </div>
+</header>
+
+<!-- POET NAV -->
+<nav class="poet-nav" id="poet-nav" aria-label="Poet selection"></nav>
+
+<!-- WORKSPACE -->
+<main id="workspace"></main>
+
+<!-- OVERALL PROGRESS -->
+<section class="overall-progress">
+  <div class="op-label">Journey progress</div>
+  <div class="poet-progress-list" id="progress-list"></div>
+</section>
+
+</div><!-- /shell -->
+
+<footer class="site-footer">
+  TRS 199 · Dr. Cyrus Paul Olsen III · Sacred Heart University · Dingle, Co. Kerry, Ireland
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════════════ */
+const POEMS = [
+  {
+    id:'heaney1',
+    day:'Day 1',
+    poet:'Seamus Heaney',
+    poem:'The Peninsula',
+    collection:'Door into the Dark (1969)',
+    tradition:'Thin Places · Celtic geography',
+    accent:'#c9a84c',
+    lines:[
+      "When you have nothing more to say, just drive",
+      "For a day all round the peninsula.",
+      "The sky is tall as over a runway,",
+      "The land without marks so you will not arrive",
+      "",
+      "But pass through, though always skirting landfall.",
+      "At dusk, horizons drink down sea and hill,",
+      "The ploughed field swallows the whitewashed gable",
+      "And you're in the dark again. Now recall",
+      "",
+      "The glazed foreshore and silhouetted log,",
+      "That rock where breakers shredded into rags,",
+      "The leggy birds stilted on their own legs,",
+      "Islands riding themselves out into the fog",
+      "",
+      "And drive back home, still with nothing to say",
+      "Except that now you will uncode all landscapes",
+      "By this: things founded clean on their own shapes,",
+      "Water and ground in their extremity."
+    ],
+    context:"Heaney wrote this after driving the Dingle Peninsula. The poem's grammar enacts the pilgrimage paradox — the sentence promises arrival ('you will') then denies it ('not arrive'). The pilgrim is always skirting the thing she came for. Notice how the final line offers the poem's theology: clarity comes not from arriving but from attending. 'Things founded clean on their own shapes' — this is the Ignatian art of contemplation in action.",
+    steps:[
+      {title:"Read aloud three times",desc:"Each reading: one new thing. First read for sound. Second for breath. Third for the grammar of the journey."},
+      {title:"Map the poem onto the landscape",desc:"Drive or walk the harbor today. At three points, recall a line. Let the land complete the poem."},
+      {title:"Find the paradox",desc:"'You will not arrive' — underline this. Hold it. Then find its counterpart in the final image. What is founded clean?"},
+      {title:"Speak it to the sea",desc:"By evening: full poem from memory, no page. Let one word be wrong. Note what you substituted — it may be yours."},
+    ]
+  },
+  {
+    id:'otuama1',
+    day:'Day 2',
+    poet:'Pádraig Ó Tuama',
+    poem:'A Blessing for the Journey',
+    collection:'Corrymeela Community Liturgy',
+    tradition:'Celtic blessing · peregrinatio',
+    accent:'#4a9e82',
+    lines:[
+      "May you find what you came for —",
+      "and what you did not know you came for.",
+      "May the road be kind to your feet.",
+      "May you arrive changed.",
+      "May you know when to stop.",
+      "",
+      "May a conversation find you",
+      "when silence has become a room",
+      "you've lived in too long.",
+      "",
+      "May what you see",
+      "outpace what you expect to see.",
+      "May you be surprised.",
+      "",
+      "And when the journey is over,",
+      "may you carry it lightly —",
+      "the weight of all you've gathered",
+      "worn thin as stone by water."
+    ],
+    context:"Ó Tuama (born Cork, 1975) leads Corrymeela, Ireland's oldest peace and reconciliation community. His blessings are liturgical forms made contemporary — ancient grammar, present urgency. 'May you know when to stop' is the line pilgrims most forget. It is also the one most needed by those who equate effort with virtue. The final image — 'worn thin as stone by water' — is the Dingle coastline itself.",
+    steps:[
+      {title:"Learn the structure",desc:"Five opening lines, each beginning 'May you.' The structure is the lesson: blessing is grammar, not sentiment. Memorize the structure before the words."},
+      {title:"Identify the theological center",desc:"Line 2 is the pilgrimage gift: you receive what you did not know you sought. Which of your days so far belongs to line 2?"},
+      {title:"Memorize by contrast",desc:"Lines 1–2 are a pair (known / unknown). Lines 3–4 are a pair (body / transformation). Line 5 stands alone. The final image is the return."},
+      {title:"Write your own",desc:"Using this structure: compose a 5-line blessing for one person you have traveled with. Read it aloud to them if you are willing."},
+    ]
+  },
+  {
+    id:'boland1',
+    day:'Day 3',
+    poet:'Eavan Boland',
+    poem:'The Dolls Museum in Dublin',
+    collection:'In a Time of Violence (1994)',
+    tradition:'Memory & exile · material culture',
+    accent:'#7c6abf',
+    lines:[
+      "The wounds are terrible. The paint is old.",
+      "The cracks along the lips and on the cheeks",
+      "cannot be fixed. The colours flake away —",
+      "the blues of eyes in faces which I know",
+      "",
+      "are mended histories. But here's the truth:",
+      "These are the real thing.",
+      "",
+      "Their simulated pain is not a trick.",
+      "It comes from a long way back,",
+      "from the cracks in the crucible,",
+      "the furnace of the doll's head,",
+      "",
+      "from the moulds that took on water,",
+      "the fires that drove it out,",
+      "and left behind the fractures",
+      "you can see, now, clearly:"
+    ],
+    context:"Boland was Ireland's great poet of ordinary female experience and suppressed national memory. 'Mended histories' is her critique of the tourist-ready version of Ireland — restored castles, cleaned-up famine narratives. The cracked, unmendable doll is truer than its restoration. 'But here's the truth: / These are the real thing.' — this pivot is the poem's theology. Failure, cracking, incompleteness: these are the marks of authentic encounter, not its absence. Apply this to Gallarus. Apply it to the Blaskets.",
+    steps:[
+      {title:"Attend to texture",desc:"Before reading: close your eyes and run your hands along a stone wall or fence post. Now read the poem. The poem is about what your hands just felt."},
+      {title:"Find the hinge",desc:"'But here's the truth' — memorize this phrase first. It is where the poem turns. Everything before is description; everything after is claim."},
+      {title:"Memorize by argument",desc:"First movement: surfaces fail (wounds / old / cracks / flake). Second movement: failure is authenticity. Learn the hinge, then build outward."},
+      {title:"Apply to one site",desc:"Which Dingle site is most like the cracked doll? Write one sentence applying Boland's claim to that site. Speak it at the site if you can."},
+    ]
+  },
+  {
+    id:'nidhomhnaill1',
+    day:'Day 4',
+    poet:'Nuala Ní Dhomhnaill',
+    poem:'An Crann / The Tree',
+    collection:`Pharaoh's Daughter (1990, trans. Paul Muldoon)`,
+    tradition:'Irish language · two-world threshold',
+    accent:'#b8613a',
+    lines:[
+      "Do tháinig bean an leasa",
+      "go dtí an doras.",
+      "— A woman from the fairy mound",
+      "  came to my door.",
+      "",
+      "Dúirt sí go raibh mo chrann",
+      "ag cur as di.",
+      "— She said that my tree",
+      "  was troubling her.",
+      "",
+      "Dúirt mé léi go raibh sé sin",
+      "ina chrann dó mo chroí.",
+      "— I said that it",
+      "  was the tree of my heart.",
+      "",
+      "Dúirt sí go gcaithfí é a leagadh.",
+      "— She said that it would have to come down.",
+      "",
+      "Ghearr mé féin é.",
+      "— I cut it down myself."
+    ],
+    context:"Ní Dhomhnaill writes exclusively in Irish. This poem holds the tension the course inhabits: two languages, two realities, neither fully translatable. In Irish, 'crann' means tree but also lineage, family tree, weaving loom, luck. The English 'tree' loses all of this. 'Bean an leasa' — the woman of the fairy mound — is not a superstition but a presence that older Irish culture knew as real. The final line is the poem's tragedy: 'I cut it down myself.' Who made you comply? The question hangs over the whole history of the Irish language.",
+    steps:[
+      {title:"Speak the Irish first",desc:"Read the Irish lines aloud — even imperfectly. The Irish is not a code for the English; they are parallel realities. Let the sounds precede the meanings."},
+      {title:"Memorize one Irish line",desc:"'Do tháinig bean an leasa' — 'There came a woman of the fairy mound.' Learn this one line in Irish. Carry it as a small door into another language."},
+      {title:"Notice what the translation loses",desc:"'Crann' = tree, but also lineage, loom, luck. Write what the English translation cost. This is itself a journal entry."},
+      {title:"The final line",desc:"'Ghearr mé féin é / I cut it down myself.' Memorize this last. Who made her comply? Sit with that question at Gallarus or any Irish-language site."},
+    ]
+  },
+  {
+    id:'montague1',
+    day:'Day 5',
+    poet:'John Montague',
+    poem:'Like Dolmens Round My Childhood',
+    collection:'The Rough Field (1972)',
+    tradition:'Rural Ireland · standing stone memory',
+    accent:'#c9a84c',
+    lines:[
+      "Like dolmens round my childhood, the old people.",
+      "",
+      "Jamie MacCrystal sang to himself,",
+      "A broken song, without tune, without words.",
+      "He tipped me a penny every pension day,",
+      "Fed kindly crusts to winter birds.",
+      "",
+      "Mary Moore wandered barefoot, to and fro,",
+      "To the well and back, all without reason,",
+      "Talking to herself above the hum of the wind",
+      "As strange as January's summer lightening.",
+      "",
+      "Ancient Ireland, indeed! I was reared by her breath,",
+      "Suckled on stories told in the dark.",
+      "Their world was a world before the flood —",
+      "So intimate the past felt present."
+    ],
+    context:"Montague — Northern Irish Catholic, raised partly in Tyrone — wrote archaeology into lyric. 'The Rough Field' was published during the opening years of the Troubles. The dolmens are a quiet political claim: the Irish rural poor, the Catholic small-farmer, the old woman singing at her door — these are prehistoric in the deepest sense. Their lives are sacred monuments. 'So intimate the past felt present' — this is the time-logic of pilgrimage. The past is not behind you. It is the air.",
+    steps:[
+      {title:"Open with the image",desc:"'Like dolmens round my childhood, the old people.' Repeat this line three times. The old people are standing stones. They predate memory; they mark the sacred."},
+      {title:"Hear the broken song",desc:"Jamie's song is 'without tune, without words.' It is pure memory-sound. Can you hum it? What is its equivalent on this peninsula?"},
+      {title:"Memorize by kindness",desc:"The stanza is built of small kindnesses: penny / crusts / winter birds. Learn them in order. They are the dolmen's shadow detail."},
+      {title:"Field journal application",desc:"On your walk today: identify one living person who is a dolmen around your childhood. Write them one paragraph with the care Montague gives Jamie MacCrystal."},
+    ]
+  },
+  {
+    id:'odonohue1',
+    day:'Day 6',
+    poet:'John O\'Donohue',
+    poem:'For a New Beginning',
+    collection:'To Bless the Space Between Us (2008)',
+    tradition:'Celtic Christianity · threshold blessing',
+    accent:'#4a9e82',
+    lines:[
+      "In out-of-the-way places of the heart,",
+      "Where your thoughts never think to wander,",
+      "This beginning has been quietly forming,",
+      "Waiting until you were ready to emerge.",
+      "",
+      "For a long time it has watched your desire,",
+      "Feeling the emptiness grow inside you,",
+      "Noticing how you willed yourself on,",
+      "Still unable to leave what you had outgrown.",
+      "",
+      "It watched you play at safe frontiers,",
+      "And saw how you danced away from the danger",
+      "That could have helped you grow.",
+      "",
+      "And when you finally stood at the edge,",
+      "And knew this was the moment,",
+      "It came, and like an intimate friend",
+      "Welcomed you into the new beginning."
+    ],
+    context:"O'Donohue — Clare-born philosopher-priest — wrote in the Celtic Christian tradition of threshold blessing while living in the west of Ireland. 'What you had outgrown' is the key to the poem's theology: pilgrimage is not about acquiring something new, but about making room by leaving what has stopped fitting. The new beginning cannot enter what is already full. 'It watched you play at safe frontiers' — read this against your own arrival in Dingle. What safe frontier did you play at before you came?",
+    steps:[
+      {title:"Read as addressed to you",desc:"This poem uses 'you' throughout. Read it as if O'Donohue wrote it for this exact moment in your pilgrimage. Do not resist the intimacy."},
+      {title:"Find the threshold vocabulary",desc:"Identify the threshold words: out-of-the-way / waiting / emerge / emptiness / outgrown / edge / moment. Memorize the words before the lines."},
+      {title:"Memorize stanza by stanza",desc:"Stanza 1: the beginning has been forming without your knowledge. Stanza 2: it watched you cling to what you've outgrown. Stanza 3: safe frontiers. Stanza 4: the arrival. Hold each insight before proceeding."},
+      {title:"Speak it at dawn",desc:"Memorize the first stanza for tomorrow morning. Speak it before breakfast, facing whatever direction feels right. This is a morning office in the Celtic tradition."},
+    ]
+  },
+  {
+    id:'heaney2',
+    day:'Day 7',
+    poet:'Seamus Heaney',
+    poem:'Postscript',
+    collection:'The Spirit Level (1996)',
+    tradition:'Embodied grace · consolation without cause',
+    accent:'#c9a84c',
+    lines:[
+      "And some time make the time to drive out west",
+      "Into County Clare, along the Flaggy Shore,",
+      "In September or October, when the wind",
+      "And the light are working off each other",
+      "So that the ocean on one side is wild",
+      "With foam and glitter, and inland among stones",
+      "The surface of a slate-grey lake is lit",
+      "By the earthed lightning of a flock of swans,",
+      "",
+      "Two by two again, into the wind,",
+      "And you're too busy driving to see it,",
+      "And yet you'll neither stop nor think it strange",
+      "That it catches you off guard and makes you cry",
+      "Or catches you off guard and makes you cry.",
+      "",
+      "And some time make the time to drive out west."
+    ],
+    context:"Often called simply 'Postscript.' Heaney wrote this after his own pilgrimage experience. 'Earthed lightning' — the swans ground the sky. This oxymoron is the poem's theological claim: the transcendent becomes visible precisely when it lands. You are in the equivalent of County Clare. The poem is already around you. The repeated final line enacts the pilgrimage logic of return: you make the time, you return, you make the time again. The crying that catches you off guard is Ignatian consolation without cause.",
+    steps:[
+      {title:"Breathe the long sentence",desc:"The opening is one sentence over eight lines. Read it in a single breath if you can. The breathlessness is the point — this is what being overwhelmed by beauty feels like."},
+      {title:"Memorize 'earthed lightning'",desc:"This phrase first. It is the poem's theological claim. Everything else unfolds from here: the transcendent becomes visible when it lands."},
+      {title:"Find the repetition",desc:"The poem ends where it begins. This circularity is the form of pilgrimage. Note how the repeated line feels different at the end. Why?"},
+      {title:"Write the Dingle equivalent",desc:"After memorizing: substitute what is the 'earthed lightning' you have seen here? Write the Dingle version in Heaney's syntax, your image."},
+    ]
+  },
+  {
+    id:'otuama2',
+    day:'Day 8',
+    poet:'Pádraig Ó Tuama',
+    poem:'I Am Stretched on Your Grave',
+    collection:'Traditional caoine (keen), modernized',
+    tradition:'Caoine · lamentation · closing',
+    accent:'#4a9e82',
+    lines:[
+      "I am stretched on your grave",
+      "and will lie there forever.",
+      "If your hands were in mine,",
+      "I'd be sure they would not sever.",
+      "",
+      "My apple tree, my brightness,",
+      "it's time we were together,",
+      "for I smell of the earth",
+      "and am worn by the weather.",
+      "",
+      "And if I had known, before,",
+      "that life would have run this way,",
+      "I would have stopped and built",
+      "a house in your heart to stay.",
+      "",
+      "I am stretched on your grave",
+      "and will lie there forever.",
+      "If your hands were in mine,",
+      "I'd be sure they would not sever."
+    ],
+    context:"A traditional Irish caoine (keen/lament) from the 17th–18th century oral tradition, preserved and modernized through Ó Tuama's scholarly work. The caoine is not performance — it is the body's truth-telling in grief. 'Apple tree, my brightness' — the beloved as living tree. 'I smell of the earth' — the speaker as already half-buried. The Blasket islanders are this poem's hidden community. The evacuation of 1953 is a cultural death the land still holds. A poem memorized is a poem carried in the body. You bring it home inside you — that is the point of the whole practice.",
+    steps:[
+      {title:"Learn it as lament",desc:"Read this poem as though it belongs to someone you have loved and lost. Let it slow your breath. The caoine tradition is the body's truth-telling, not performance."},
+      {title:"Memorize the two images",desc:"'Apple tree, my brightness' — the beloved as living tree. 'I smell of the earth' — the speaker as already half-buried. Hold the paradox: the living mourning their way into death."},
+      {title:"Pair with the peninsula",desc:"The Blasket islanders are this poem's hidden community. Where on the peninsula did you feel this poem in the landscape? Write the place name and one sentence."},
+      {title:"Speak it for the closing circle",desc:"Offer to recite this poem from memory in the June 3 circle. A poem memorized is a poem carried in the body. You bring it home inside you."},
+    ]
+  }
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════ */
+let state = JSON.parse(localStorage.getItem('trs199_poetry') || 'null') || {
+  active: 0,
+  activeTab: {},
+  stepsDone: {},
+  recalls: {},
+  masteryScores: {},
+  auditNotes: {},
+};
+function saveState(){ localStorage.setItem('trs199_poetry', JSON.stringify(state)); }
+
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+function init(){
+  buildNav();
+  buildProgressList();
+  showPoet(state.active);
+  updateSummary();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════════ */
+function buildNav(){
+  const nav = document.getElementById('poet-nav');
+  nav.innerHTML = POEMS.map((p,i) => {
+    const done = poeMastery(i) >= 60;
+    return `<button class="poet-btn${i===state.active?' active':''}${done?' done':''}" onclick="showPoet(${i})" aria-label="${p.poet}: ${p.poem}">
+      <div class="pb-day">${p.day}</div>
+      <div class="pb-name">${p.poet.split(' ').pop()}</div>
+      <div class="pb-done" aria-hidden="true"></div>
+    </button>`;
+  }).join('');
+}
+
+function poeMastery(i){
+  const scores = state.masteryScores[i] || [];
+  if(!scores.length) return 0;
+  return Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SHOW POET
+═══════════════════════════════════════════════════════════════ */
+function showPoet(i){
+  state.active = i;
+  saveState();
+
+  // Update nav
+  document.querySelectorAll('.poet-btn').forEach((b,j)=>{
+    b.classList.toggle('active', j===i);
+  });
+
+  const p = POEMS[i];
+  const activeTab = state.activeTab[i] || 'read';
+  const mastery = poeMastery(i);
+
+  const ws = document.getElementById('workspace');
+  ws.innerHTML = `
+  <div class="poem-workspace visible" id="pw-${i}">
+
+    <div class="poet-header">
+      <div class="poet-header-left">
+        <div class="poet-day-label">${p.day} · ${p.tradition}</div>
+        <div class="poet-name">${p.poet}</div>
+        <div class="poem-title">${p.poem}</div>
+        <div class="poet-tradition">${p.collection}</div>
+      </div>
+      <div class="mastery-ring" title="${mastery}% mastery">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="23" fill="none" stroke="#2a2b24" stroke-width="3"/>
+          <circle cx="28" cy="28" r="23" fill="none" stroke="${p.accent}" stroke-width="3"
+            stroke-dasharray="${Math.round(2*Math.PI*23*mastery/100)} ${Math.round(2*Math.PI*23)}"
+            stroke-linecap="round"/>
+        </svg>
+        <div class="ring-label">${mastery}%</div>
+      </div>
+    </div>
+
+    <nav class="mode-tabs">
+      <button class="mode-tab${activeTab==='read'?' active':''}" onclick="switchTab(${i},'read')">Read</button>
+      <button class="mode-tab${activeTab==='listen'?' active':''}" onclick="switchTab(${i},'listen')">Practice</button>
+      <button class="mode-tab${activeTab==='hide'?' active':''}" onclick="switchTab(${i},'hide')">Cloze</button>
+      <button class="mode-tab${activeTab==='recall'?' active':''}" onclick="switchTab(${i},'recall')">Recall</button>
+      <button class="mode-tab${activeTab==='audit'?' active':''}" onclick="switchTab(${i},'audit')">Audit</button>
+    </nav>
+
+    <div id="tab-read-${i}" class="tab-panel${activeTab==='read'?' active':''}">
+      ${buildReadPanel(p,i)}
+    </div>
+    <div id="tab-listen-${i}" class="tab-panel${activeTab==='listen'?' active':''}">
+      ${buildListenPanel(p,i)}
+    </div>
+    <div id="tab-hide-${i}" class="tab-panel${activeTab==='hide'?' active':''}">
+      ${buildHidePanel(p,i)}
+    </div>
+    <div id="tab-recall-${i}" class="tab-panel${activeTab==='recall'?' active':''}">
+      ${buildRecallPanel(p,i)}
+    </div>
+    <div id="tab-audit-${i}" class="tab-panel${activeTab==='audit'?' active':''}">
+      ${buildAuditPanel(p,i)}
+    </div>
+
+  </div>`;
+
+  // Restore step state
+  restoreStepState(i);
+}
+
+/* ── TAB SWITCH ───────────────────────────────────────────────── */
+function switchTab(poetIdx, tab){
+  state.activeTab[poetIdx] = tab;
+  saveState();
+  document.querySelectorAll('.mode-tab').forEach((b,j)=>{
+    const tabs = ['read','listen','hide','recall','audit'];
+    b.classList.toggle('active', tabs[j]===tab);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById(`tab-${tab}-${poetIdx}`);
+  if(el) el.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   READ PANEL
+═══════════════════════════════════════════════════════════════ */
+function buildReadPanel(p, i){
+  const linesHtml = `<div class="poem-lines-inner">${
+    p.lines.map(l => l
+      ? `<div class="poem-line-wrap">${escHtml(l)}</div>`
+      : `<div style="height:0.5em"></div>`
+    ).join('')
+  }</div>`;
+
+  return `
+  <div class="poem-text-block">
+    <div class="poem-lines">${linesHtml}</div>
+  </div>
+  <div class="context-note">
+    <div class="cn-label">Contextual note · for study only — do not read before first encounter</div>
+    <p>${p.context}</p>
+  </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LISTEN / PRACTICE PANEL
+═══════════════════════════════════════════════════════════════ */
+function buildListenPanel(p, i){
+  const done = state.stepsDone[i] || {};
+  const stepsHtml = p.steps.map((s,j)=>`
+    <div class="listen-step${done[j]?' done':''}" onclick="toggleStep(${i},${j})" id="step-${i}-${j}">
+      <div class="ls-num">${j+1}</div>
+      <div class="ls-body">
+        <div class="ls-title">${escHtml(s.title)}</div>
+        <div class="ls-desc">${escHtml(s.desc)}</div>
+      </div>
+    </div>`).join('');
+
+  return `
+  <p class="listen-prompt">Work through these steps over one or two days. Click each when complete.</p>
+  ${stepsHtml}`;
+}
+
+function toggleStep(poetIdx, stepIdx){
+  if(!state.stepsDone[poetIdx]) state.stepsDone[poetIdx] = {};
+  state.stepsDone[poetIdx][stepIdx] = !state.stepsDone[poetIdx][stepIdx];
+  saveState();
+  const el = document.getElementById(`step-${poetIdx}-${stepIdx}`);
+  if(el) el.classList.toggle('done', state.stepsDone[poetIdx][stepIdx]);
+  updateProgressBar(poetIdx);
+}
+
+function restoreStepState(i){
+  const done = state.stepsDone[i] || {};
+  Object.entries(done).forEach(([j,v])=>{
+    if(v){
+      const el = document.getElementById(`step-${i}-${j}`);
+      if(el) el.classList.add('done');
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLOZE / HIDE PANEL
+═══════════════════════════════════════════════════════════════ */
+function buildHidePanel(p, i){
+  return `
+  <div class="hide-controls">
+    <label for="hide-sel-${i}">Hide:</label>
+    <select class="hide-select" id="hide-sel-${i}" onchange="renderCloze(${i})">
+      <option value="ends">Line endings</option>
+      <option value="every2">Every other word</option>
+      <option value="firstwords">First words of each line</option>
+      <option value="half">Second half of poem</option>
+    </select>
+    <button class="cloze-btn" onclick="renderCloze(${i})">Reshuffle</button>
+  </div>
+  <div class="cloze-hint">Tap any blank to reveal that word.</div>
+  <div class="cloze-poem" id="cloze-${i}"></div>`;
+}
+
+function renderCloze(poetIdx){
+  const p = POEMS[poetIdx];
+  const mode = document.getElementById(`hide-sel-${poetIdx}`)?.value || 'ends';
+  const container = document.getElementById(`cloze-${poetIdx}`);
+  if(!container) return;
+
+  const lines = p.lines;
+  let html = '';
+
+  lines.forEach((line, li) => {
+    if(!line){ html += '\n'; return; }
+    const words = line.split(/(\s+)/);
+    let lineHtml = '';
+
+    words.forEach((token, ti) => {
+      if(/^\s+$/.test(token)){ lineHtml += token; return; }
+      const wordIdx = Math.floor(ti/2);
+      const totalWords = words.filter(w=>/\S/.test(w)).length;
+      let hide = false;
+
+      if(mode==='ends'){
+        // Hide last word of each line
+        const wordTokens = words.filter(w=>/\S/.test(w));
+        hide = token === wordTokens[wordTokens.length-1];
+      } else if(mode==='every2'){
+        hide = wordIdx%2===1;
+      } else if(mode==='firstwords'){
+        const wordTokens = words.filter(w=>/\S/.test(w));
+        hide = token === wordTokens[0];
+      } else if(mode==='half'){
+        hide = li >= Math.ceil(lines.filter(l=>l).length/2);
+      }
+
+      if(hide){
+        lineHtml += `<span class="cloze-blank" onclick="revealBlank(this)">${escHtml(token)}</span>`;
+      } else {
+        lineHtml += escHtml(token);
+      }
+    });
+
+    html += lineHtml + '\n';
+  });
+
+  container.innerHTML = html;
+}
+
+function revealBlank(el){
+  el.classList.add('revealed');
+}
+
+// Init cloze on tab show
+const origSwitchTab = switchTab;
+
+/* ═══════════════════════════════════════════════════════════════
+   RECALL PANEL
+═══════════════════════════════════════════════════════════════ */
+function buildRecallPanel(p, i){
+  const recalls = state.recalls[i] || [];
+  const count = recalls.length;
+  const best = count ? Math.max(...recalls) : 0;
+
+  return `
+  <div class="recall-stage">
+    <p class="recall-prompt">From memory — write the poem without looking. Imperfect is fine. What you substitute may be yours.</p>
+    <textarea class="recall-input" id="recall-input-${i}" rows="10" placeholder="Begin when ready…"></textarea>
+  </div>
+  <div class="recall-actions">
+    <button class="r-btn primary" onclick="checkRecall(${i})">Check my recall</button>
+    <button class="r-btn" onclick="clearRecall(${i})">Clear &amp; retry</button>
+    <button class="r-btn" onclick="switchTab(${i},'read')">See poem</button>
+  </div>
+  <div class="recall-score" id="recall-score-${i}">
+    <div class="score-pct" id="score-pct-${i}">0%</div>
+    <div>
+      <div class="score-label">word accuracy</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--ivory-hint);margin-top:2px">
+        Attempts: <span id="recall-count-${i}">${count}</span> · Best: <span id="recall-best-${i}">${best}%</span>
+      </div>
+    </div>
+    <div class="score-encouragement" id="recall-enc-${i}"></div>
+  </div>
+  <div class="diff-view" id="diff-${i}"></div>`;
+}
+
+function checkRecall(i){
+  const input = document.getElementById(`recall-input-${i}`);
+  if(!input) return;
+  const userText = input.value.trim();
+  if(!userText) return;
+
+  const p = POEMS[i];
+  const original = p.lines.filter(l=>l).join(' ');
+  const origWords = tokenise(original);
+  const userWords = tokenise(userText);
+
+  const score = Math.round(fuzzyWordScore(origWords, userWords) * 100);
+
+  // Save
+  if(!state.recalls[i]) state.recalls[i] = [];
+  state.recalls[i].push(score);
+  if(!state.masteryScores[i]) state.masteryScores[i] = [];
+  state.masteryScores[i].push(score);
+  saveState();
+
+  // Display score
+  const scoreEl = document.getElementById(`recall-score-${i}`);
+  if(scoreEl) scoreEl.classList.add('visible');
+  const pctEl = document.getElementById(`score-pct-${i}`);
+  if(pctEl) pctEl.textContent = score + '%';
+  const countEl = document.getElementById(`recall-count-${i}`);
+  if(countEl) countEl.textContent = state.recalls[i].length;
+  const bestEl = document.getElementById(`recall-best-${i}`);
+  if(bestEl) bestEl.textContent = Math.max(...state.recalls[i]) + '%';
+  const encEl = document.getElementById(`recall-enc-${i}`);
+  if(encEl) encEl.textContent = encouragement(score);
+
+  // Diff
+  const diffEl = document.getElementById(`diff-${i}`);
+  if(diffEl){
+    diffEl.classList.add('visible');
+    diffEl.innerHTML = buildDiff(origWords, userWords);
+  }
+
+  updateProgressBar(i);
+  updateSummary();
+  buildNav();
+}
+
+function clearRecall(i){
+  const input = document.getElementById(`recall-input-${i}`);
+  if(input) input.value = '';
+  const scoreEl = document.getElementById(`recall-score-${i}`);
+  if(scoreEl) scoreEl.classList.remove('visible');
+  const diffEl = document.getElementById(`diff-${i}`);
+  if(diffEl) diffEl.classList.remove('visible');
+}
+
+function tokenise(text){
+  return text.toLowerCase().replace(/[^a-z\s']/g,'').split(/\s+/).filter(Boolean);
+}
+
+function fuzzyWordScore(orig, user){
+  if(!orig.length) return 0;
+  let matches = 0;
+  const used = new Array(user.length).fill(false);
+  orig.forEach(word => {
+    const idx = user.findIndex((w,j)=>!used[j] && (w===word || levenshtein(w,word)<=1));
+    if(idx>=0){ matches++; used[idx]=true; }
+  });
+  return matches / orig.length;
+}
+
+function levenshtein(a,b){
+  const m=a.length,n=b.length;
+  const dp=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i?j?0:i:j));
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++)
+    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+function buildDiff(orig, user){
+  // Simple LCS-based diff
+  const lcs = computeLCS(orig, user);
+  let oi=0, ui=0, li=0, html='';
+  while(oi<orig.length||ui<user.length){
+    if(li<lcs.length && oi<orig.length && ui<user.length
+       && orig[oi]===lcs[li] && user[ui]===lcs[li]){
+      html+=`<span class="diff-match">${escHtml(orig[oi])}</span> `;
+      oi++;ui++;li++;
+    } else if(ui<user.length && (li>=lcs.length||user[ui]!==lcs[li])){
+      html+=`<span class="diff-add">${escHtml(user[ui])}</span> `;
+      ui++;
+    } else if(oi<orig.length){
+      html+=`<span class="diff-del">${escHtml(orig[oi])}</span> `;
+      oi++;
+    }
+  }
+  return '<div style="font-size:0.9rem;color:var(--ivory-hint);font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;margin-bottom:8px">ORIGINAL (strikethrough = missing · green = added)</div>' + html;
+}
+
+function computeLCS(a,b){
+  const m=a.length,n=b.length;
+  const dp=Array.from({length:m+1},()=>new Array(n+1).fill(0));
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++)
+    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const result=[];
+  let i=m,j=n;
+  while(i>0&&j>0){
+    if(a[i-1]===b[j-1]){result.unshift(a[i-1]);i--;j--;}
+    else if(dp[i-1][j]>dp[i][j-1]) i--;
+    else j--;
+  }
+  return result;
+}
+
+function encouragement(score){
+  if(score>=95) return "Nearly perfect — the poem lives in you.";
+  if(score>=80) return "Strong recall. The shape is there.";
+  if(score>=60) return "The bones are present. Keep walking with it.";
+  if(score>=40) return "Good beginning. It takes more than one attempt.";
+  return "The first attempt is always honest. Try again tomorrow.";
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT PANEL
+═══════════════════════════════════════════════════════════════ */
+function buildAuditPanel(p, i){
+  const saved = state.auditNotes[i] || {};
+  return `
+  <p style="font-style:italic;color:var(--ivory-hint);font-size:0.9rem;margin-bottom:1.25rem">
+    Required per syllabus pp. 7–8. If AI was not used, a one-sentence declaration suffices.
+    This record stays in your browser and is for your own reference when writing the annotation.
+  </p>
+  <div class="audit-form">
+    <div class="audit-field">
+      <label for="audit-asked-${i}">What you asked the AI</label>
+      <textarea class="audit-textarea" id="audit-asked-${i}" placeholder="e.g. I asked for a translation of 'bean an leasa' and the etymology of 'crann'…" rows="2">${escHtml(saved.asked||'')}</textarea>
+    </div>
+    <div class="audit-field">
+      <label for="audit-returned-${i}">What the AI returned</label>
+      <textarea class="audit-textarea" id="audit-returned-${i}" placeholder="Summarise the AI's response…" rows="2">${escHtml(saved.returned||'')}</textarea>
+    </div>
+    <div class="audit-field">
+      <label for="audit-changed-${i}">What you changed and why</label>
+      <textarea class="audit-textarea" id="audit-changed-${i}" placeholder="e.g. I kept the etymology but rewrote the commentary in my own voice because…" rows="2">${escHtml(saved.changed||'')}</textarea>
+    </div>
+    <div class="audit-field">
+      <label for="audit-noai-${i}">Or: declaration of non-use</label>
+      <textarea class="audit-textarea" id="audit-noai-${i}" placeholder="No AI consulted for this poem." rows="1">${escHtml(saved.noai||'')}</textarea>
+    </div>
+    <button class="audit-save-btn" onclick="saveAudit(${i})">Save to browser</button>
+    <span class="audit-saved-msg" id="audit-saved-${i}">Saved ✓</span>
+  </div>`;
+}
+
+function saveAudit(i){
+  state.auditNotes[i] = {
+    asked: document.getElementById(`audit-asked-${i}`)?.value || '',
+    returned: document.getElementById(`audit-returned-${i}`)?.value || '',
+    changed: document.getElementById(`audit-changed-${i}`)?.value || '',
+    noai: document.getElementById(`audit-noai-${i}`)?.value || '',
+  };
+  saveState();
+  const msg = document.getElementById(`audit-saved-${i}`);
+  if(msg){ msg.style.display='inline'; setTimeout(()=>msg.style.display='none',2200); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════════════════════════ */
+function buildProgressList(){
+  const list = document.getElementById('progress-list');
+  list.innerHTML = POEMS.map((p,i) => {
+    const pct = poeMastery(i);
+    return `<div class="pp-item">
+      <div class="pp-name">${p.poet.split(' ').pop()} — ${p.poem}</div>
+      <div class="pp-bar-wrap"><div class="pp-bar" id="ppbar-${i}" style="width:${pct}%"></div></div>
+      <div class="pp-pct" id="pppct-${i}">${pct}% mastery · ${(state.recalls[i]||[]).length} recalls</div>
+    </div>`;
+  }).join('');
+}
+
+function updateProgressBar(i){
+  const pct = poeMastery(i);
+  const bar = document.getElementById(`ppbar-${i}`);
+  if(bar) bar.style.width = pct+'%';
+  const lbl = document.getElementById(`pppct-${i}`);
+  if(lbl) lbl.textContent = `${pct}% mastery · ${(state.recalls[i]||[]).length} recalls`;
+}
+
+function updateSummary(){
+  const begun = POEMS.filter((_,i)=>(state.recalls[i]||[]).length>0).length;
+  const totalRecalls = POEMS.reduce((a,_,i)=>a+(state.recalls[i]||[]).length,0);
+  const avg = Math.round(POEMS.reduce((a,_,i)=>a+poeMastery(i),0)/POEMS.length);
+  document.getElementById('poets-done').textContent = begun;
+  document.getElementById('total-recalls').textContent = totalRecalls;
+  document.getElementById('avg-mastery').textContent = avg;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════════════════════════ */
+function escHtml(s){
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+// Initialize cloze when switching to hide tab
+const _origSwitch = window.switchTab;
+window.switchTab = function(i, tab){
+  if(typeof _origSwitch === 'function') _origSwitch(i, tab);
+  if(tab==='hide'){
+    setTimeout(()=>renderCloze(i), 50);
+  }
+};
+
+/* ── GO ── */
+init();
+</script>
+</body>
+</html>
