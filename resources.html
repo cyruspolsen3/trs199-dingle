@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — TRS 199 Dingle 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0f0d;
+  --bg2:#161712;
+  --bg3:#1d1e19;
+  --bg4:#252620;
+  --ruled:#2a2b24;
+  --gold:#c9a84c;
+  --gold-dim:#8a6e2f;
+  --gold-pale:#e8d49a;
+  --ivory:#f0ead8;
+  --ivory-dim:#a09880;
+  --ivory-hint:#504d42;
+  --teal:#4a9e82;
+  --teal-dim:#2d6653;
+  --coral:#b8613a;
+  --purple:#7c6abf;
+  --amber:#c9a84c;
+  --r:6px;
+  --r-lg:10px;
+  --font-display:'Cinzel',serif;
+  --font-body:'EB Garamond',Georgia,serif;
+  --font-mono:'Source Code Pro',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ivory);
+  font-family:var(--font-body);
+  font-size:18px;
+  line-height:1.75;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+  pointer-events:none;z-index:1000;opacity:0.35;
+}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+.shell{max-width:860px;margin:0 auto;padding:0 1.5rem 5rem}
+
+/* ── MASTHEAD ── */
+.masthead{
+  padding:3.5rem 0 1.5rem;
+  text-align:center;
+  animation:fade-up 0.7s var(--ease) both;
+}
+.masthead .eyebrow{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;
+  color:var(--gold-dim);text-transform:uppercase;margin-bottom:1rem;
+}
+.masthead h1{
+  font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.4rem);
+  font-weight:400;color:var(--gold);letter-spacing:0.04em;
+  line-height:1.2;margin-bottom:0.5rem;
+}
+.masthead .sub{font-style:italic;font-size:1rem;color:var(--ivory-dim)}
+
+/* ── LIVING DOCUMENT BANNER ── */
+.living-banner{
+  margin:1.5rem 0 2rem;
+  padding:12px 16px;
+  background:rgba(201,168,76,0.07);
+  border:1px solid var(--gold-dim);
+  border-radius:var(--r-lg);
+  display:flex;align-items:flex-start;gap:12px;
+  animation:fade-up 0.7s var(--ease) 0.1s both;
+}
+.lb-icon{
+  font-size:18px;margin-top:1px;flex-shrink:0;
+}
+.lb-text{font-size:0.9rem;color:var(--gold-pale);line-height:1.6}
+.lb-text strong{font-weight:500;color:var(--gold)}
+
+/* ── NAV ── */
+.portal-nav{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin-bottom:2rem;
+  animation:fade-up 0.7s var(--ease) 0.15s both;
+}
+.nav-link{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--ivory-hint);text-decoration:none;
+  padding:6px 12px;border:1px solid var(--ruled);border-radius:var(--r);
+  transition:border-color 0.15s,color 0.15s;
+}
+.nav-link:hover{border-color:var(--gold-dim);color:var(--gold)}
+
+/* ── SECTION TABS ── */
+.section-tabs{
+  display:flex;border-bottom:1px solid var(--ruled);
+  margin-bottom:2rem;gap:0;
+  animation:fade-up 0.7s var(--ease) 0.2s both;
+  overflow-x:auto;
+}
+.s-tab{
+  flex-shrink:0;
+  background:none;border:none;
+  border-bottom:2px solid transparent;
+  padding:10px 16px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--ivory-hint);cursor:pointer;
+  transition:color 0.15s,border-color 0.15s;white-space:nowrap;
+}
+.s-tab:hover{color:var(--ivory-dim)}
+.s-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── SECTION PANELS ── */
+.s-panel{display:none}
+.s-panel.active{display:block;animation:fade-up 0.4s var(--ease) both}
+
+/* ── RESOURCE CARD ── */
+.resource-card{
+  background:var(--bg2);border:1px solid var(--ruled);
+  border-radius:var(--r-lg);overflow:hidden;margin-bottom:1rem;
+}
+.rc-head{
+  padding:14px 16px 10px;
+  border-bottom:1px solid var(--ruled);
+  display:flex;align-items:flex-start;gap:12px;
+}
+.rc-accent{
+  width:3px;border-radius:2px;flex-shrink:0;
+  align-self:stretch;min-height:40px;
+}
+.rc-meta{flex:1}
+.rc-type{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;
+  text-transform:uppercase;margin-bottom:4px;
+}
+.rc-title{
+  font-family:var(--font-body);font-weight:500;font-size:1rem;
+  color:var(--ivory);margin-bottom:2px;line-height:1.3;
+}
+.rc-author{font-size:0.875rem;color:var(--ivory-dim);font-style:italic}
+.rc-badge{
+  font-family:var(--font-mono);font-size:10px;padding:3px 9px;
+  border-radius:20px;white-space:nowrap;flex-shrink:0;align-self:flex-start;
+  margin-top:2px;
+}
+.badge-free{background:rgba(74,158,130,0.15);color:var(--teal);border:1px solid var(--teal-dim)}
+.badge-print{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid var(--gold-dim)}
+.badge-thesis{background:rgba(124,106,191,0.12);color:var(--purple);border:1px solid rgba(124,106,191,0.3)}
+
+.rc-body{padding:12px 16px 14px}
+.rc-annotation{
+  font-size:0.95rem;color:var(--ivory-dim);line-height:1.7;margin-bottom:10px;
+}
+.rc-annotation em{color:var(--gold-pale);font-style:italic}
+.rc-annotation strong{color:var(--ivory);font-weight:500}
+
+.rc-link-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rc-link{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;
+  color:var(--teal);text-decoration:none;padding:5px 11px;
+  border:1px solid var(--teal-dim);border-radius:var(--r);
+  transition:background 0.15s,color 0.15s;display:inline-flex;
+  align-items:center;gap:5px;
+}
+.rc-link:hover{background:rgba(74,158,130,0.1);color:var(--teal)}
+.rc-link.dim{
+  color:var(--ivory-hint);border-color:var(--ruled);
+}
+.rc-link.dim:hover{color:var(--ivory-dim);background:var(--bg3)}
+.rc-day-tag{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;
+  color:var(--ivory-hint);padding:4px 8px;border-radius:20px;
+  border:1px solid var(--ruled);background:var(--bg3);
+}
+
+/* ── SECTION INTRO ── */
+.section-intro{
+  font-size:0.95rem;color:var(--ivory-dim);line-height:1.7;
+  margin-bottom:1.5rem;padding:12px 16px;
+  background:var(--bg2);border-radius:var(--r-lg);
+  border-left:2px solid var(--ruled);
+}
+.section-intro em{color:var(--gold-pale)}
+
+/* ── COMING SOON CARD ── */
+.coming-soon{
+  background:var(--bg3);border:1px dashed var(--ruled);
+  border-radius:var(--r-lg);padding:16px;margin-bottom:1rem;
+  display:flex;align-items:center;gap:12px;
+}
+.cs-label{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;
+  color:var(--ivory-hint);text-transform:uppercase;
+}
+.cs-title{font-size:0.9rem;color:var(--ivory-hint);font-style:italic}
+
+/* ── HOW TO USE ── */
+.how-to{
+  background:var(--bg2);border:1px solid var(--ruled);
+  border-radius:var(--r-lg);padding:1.25rem 1.5rem;
+  margin-bottom:2rem;
+  animation:fade-up 0.7s var(--ease) 0.25s both;
+}
+.ht-label{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;
+  color:var(--teal);text-transform:uppercase;margin-bottom:0.75rem;
+}
+.ht-row{
+  display:flex;align-items:baseline;gap:10px;
+  margin-bottom:0.5rem;font-size:0.9rem;color:var(--ivory-dim);
+  line-height:1.6;
+}
+.ht-num{
+  font-family:var(--font-mono);font-size:10px;color:var(--gold-dim);
+  flex-shrink:0;width:16px;
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  border-top:1px solid var(--ruled);margin-top:3rem;padding:1.5rem 0;
+  text-align:center;font-family:var(--font-mono);font-size:10px;
+  letter-spacing:0.1em;color:var(--ivory-hint);text-transform:uppercase;
+}
+
+@keyframes fade-up{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:600px){
+  .section-tabs{gap:0}
+  .s-tab{padding:8px 10px;font-size:10px}
+  .rc-head{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header class="masthead">
+  <div class="eyebrow">TRS 199 · Sacred Heart University · Dingle 2026</div>
+  <h1>Course Resources</h1>
+  <p class="sub">Primary sources, scholarly contexts, and field companions</p>
+</header>
+
+<nav class="portal-nav" aria-label="Site navigation">
+  <a class="nav-link" href="index.html">← Poetry portal</a>
+  <a class="nav-link" href="exercises.html">Daily exercises</a>
+</nav>
+
+<!-- LIVING DOCUMENT BANNER -->
+<div class="living-banner" role="note" aria-label="Living document notice">
+  <div class="lb-icon">◎</div>
+  <div class="lb-text">
+    <strong>This page is a living document.</strong>
+    Resources are added as the course develops. Each section is complete enough to be useful now and will grow before and during the Dingle immersion. If you find a broken link or want to suggest an addition, contact Dr. Olsen directly.
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div class="how-to">
+  <div class="ht-label">How to use this page</div>
+  <div class="ht-row"><span class="ht-num">1.</span>Resources marked <span style="color:var(--teal);font-family:var(--font-mono);font-size:12px;margin:0 4px">Free · Online</span> are publicly accessible — click to open directly.</div>
+  <div class="ht-row"><span class="ht-num">2.</span>Resources marked <span style="color:var(--gold);font-family:var(--font-mono);font-size:12px;margin:0 4px">Print · Packet</span> are in your course reader — page numbers are noted where available.</div>
+  <div class="ht-row"><span class="ht-num">3.</span>Day tags show which exercise day each resource most directly supports — but all are available for the whole course.</div>
+  <div class="ht-row"><span class="ht-num">4.</span>Read the annotation before following a link. It tells you what the resource is for and how to use it, so you are not reading blindly.</div>
+</div>
+
+<!-- SECTION TABS -->
+<nav class="section-tabs" role="tablist" aria-label="Resource sections">
+  <button class="s-tab active" role="tab" onclick="showSection('desert')" aria-selected="true">Desert &amp; Celtic</button>
+  <button class="s-tab" role="tab" onclick="showSection('navigatio')" aria-selected="false">Sea &amp; Pilgrimage</button>
+  <button class="s-tab" role="tab" onclick="showSection('ignatian')" aria-selected="false">Ignatian</button>
+  <button class="s-tab" role="tab" onclick="showSection('literary')" aria-selected="false">Literary &amp; North Atlantic</button>
+  <button class="s-tab" role="tab" onclick="showSection('scholarly')" aria-selected="false">Scholarly Sources</button>
+  <button class="s-tab" role="tab" onclick="showSection('field')" aria-selected="false">Field &amp; Site</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: DESERT & CELTIC
+═══════════════════════════════════════════════════════════ -->
+<div id="section-desert" class="s-panel active">
+
+  <div class="section-intro">
+    The desert tradition arrived in Ireland not through geography but through text — via John Cassian's <em>Conferences</em>, copied in monastic scriptoria from Gaul to Kerry. The <em>díseart</em> of the Dingle Peninsula is the Egyptian desert translated into Atlantic stone. These resources trace that translation.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Primary source · Desert tradition</div>
+        <div class="rc-title">The Anonymous Sayings of the Desert Fathers</div>
+        <div class="rc-author">Trans. John Wortley · Internet Archive</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The anonymous layer of the <em>Apophthegmata Patrum</em> — sayings not attributed to a named Abba or Amma but preserved by their living wisdom. Wortley's translation is scholarly and readable. The desert fathers and mothers spoke in short, precise bursts — a single sentence meant to inhabit a disciple for weeks. Read slowly, not comprehensively. The exercise on Day 1 (threshold attention) and Day 2 (enclosure, Abba Moses on the cell) both draw directly from this collection.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://ia800408.us.archive.org/25/items/TheAnonymousSayingsOfTheDWortleyJohn5090/The%20Anonymous%20Sayings%20of%20the%20D%20-%20Wortley%2C%20John_5090.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+        <span class="rc-day-tag">Days 1–2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Primary source · Desert Mothers</div>
+        <div class="rc-title">Amma Syncletica, Theodora, and Sarah: Sayings and Commentary</div>
+        <div class="rc-author">VK McCarty · Public Orthodoxy (2020) · Aleteia (2017) · Axia Women</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Three women whose sayings were preserved in the <em>Apophthegmata Patrum</em> alongside those of the Abbas. <strong>Amma Syncletica</strong> opens the daily exercises because she spoke most directly about the sea: her ship-and-storm saying is the closest thing the desert tradition has to a maritime spirituality. <strong>Amma Theodora</strong> on the storm that precedes the fruit; <strong>Amma Sarah</strong> on sixty years of prayer beside a river she never stopped to watch. All three are available across the three linked sources below. Read the sayings slowly — one or two per day — rather than all at once.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://publicorthodoxy.org/2020/12/04/encouragement-from-the-desert-mothers-in-troubling-times/" target="_blank" rel="noopener">Public Orthodoxy ↗</a>
+        <a class="rc-link" href="https://aleteia.org/2017/12/11/5-more-sayings-from-the-desert-mothers-to-give-your-day-a-spiritual-boost/" target="_blank" rel="noopener">Aleteia ↗</a>
+        <a class="rc-link" href="https://www.axiawomen.org/wow/desert-mothers-syncletica-theodora-and-sarah" target="_blank" rel="noopener">Axia Women ↗</a>
+        <span class="rc-day-tag">Days 1, 5, 7</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Primary source · Desert sayings</div>
+        <div class="rc-title">Desert, Cell, and Tomb: Selected Sayings on Death to Self</div>
+        <div class="rc-author">Trans. Benedicta Ward SLG · Renovaré</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        A curated selection from Ward's authoritative translations of the <em>Alphabetical Collection</em>, organized around the theme of self-emptying. The story of Abba Moses and the leaking jug — "my sins run out behind me, and I do not see them, and today I am coming to judge the errors of another" — belongs to Day 6 on hospitality and community. The two hermits who try to have a quarrel and cannot belongs to Day 4 on the open mic and communal listening. Ward's translations are the scholarly standard; Benedicta Ward SLG (Sisters of the Love of God) remains the most trusted English translator of the desert tradition.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://renovare.org/articles/desert-cell-and-tomb" target="_blank" rel="noopener">Read at Renovaré ↗</a>
+        <span class="rc-day-tag">Days 2, 4, 6</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--amber)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--amber)">Celtic monasticism · Course packet</div>
+        <div class="rc-title">Celtic Monasticism and Pilgrimage: A Study Packet</div>
+        <div class="rc-author">Compiled by Dr. Cyrus Paul Olsen III · TRS 199 Course Reader</div>
+      </div>
+      <span class="rc-badge badge-print">Print · Packet</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Your course reader contains a synthesis of Celtic monastic history covering the <em>díseart</em> tradition, the Three Martyrdoms (white, green, red), the archaeology of Reask and Gallarus, the <em>Navigatio Sancti Brendani</em>, the Boethian daily rhythm, and the connection between Egyptian desert practice and the Irish Atlantic monasteries via John Cassian. The AI Audit Trail is reframed here as a contemporary <em>apophthegmata</em> — a form of reflective alertness with ancient precedent. Read the packet before Day 2 (Gallarus, Reask, Fahan) and again after Day 5 (Brandon Creek) when the Navigatio section will read differently having stood at the departure point.
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">Days 2, 5</span>
+        <span class="rc-link dim" style="cursor:default">In your course reader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">John Cassian, <em>Conferences</em> — selected passages on prayer and the cell (translation TBC)</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Philip Sheldrake, <em>Living Between Worlds: Place and Journey in Celtic Spirituality</em> — chapter on landscape and the sacred</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: SEA & PILGRIMAGE
+═══════════════════════════════════════════════════════════ -->
+<div id="section-navigatio" class="s-panel">
+
+  <div class="section-intro">
+    The sea is the course's central landscape — not background but protagonist. These resources trace the three medieval pilgrimage geometries: <em>the cycle</em> (Brendan), <em>the line</em> (Sigeric), and <em>the void</em> (The Wanderer). All three were written within a century of each other; all three are present in the Dingle landscape.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--coral)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--coral)">Primary source · Navigatio</div>
+        <div class="rc-title">The Voyage of Saint Brendan — Summary Retelling</div>
+        <div class="rc-author">Irish Folklore Centre · Based on O'Meara translation (1976)</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The clearest popular retelling of the <em>Navigatio Sancti Brendani Abbatis</em> — the 7th-century Irish monk's seven-year circular voyage to the Promised Land of the Saints, recorded in 10th-century Latin. 125 manuscripts survive, evidence of its extraordinary reach. Essential reading before Day 5 (Brandon Creek), where you will stand at the departure point. Two things to hold: the voyage is <strong>circular</strong> — Brendan is instructed to return home before he can die; and the <strong>whale Jasconius</strong>, mistaken for an island every Easter, is the course's central image of misreading — we build fires on what we think is solid ground, and the ground moves.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://www.irishfolklorecentre.com/471-2/" target="_blank" rel="noopener">Read at Irish Folklore Centre ↗</a>
+        <span class="rc-day-tag">Day 5</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--coral)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--coral)">Scholarly context · Pilgrimage geometries</div>
+        <div class="rc-title">Three Pilgrims Searching for Home: The Navigatio, Sigeric, and The Wanderer</div>
+        <div class="rc-author">Sandra Anne Jones · MA Thesis · English and Linguistics Programme · 2023</div>
+      </div>
+      <span class="rc-badge badge-thesis">Scholarly · Thesis</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        A rigorous 123-page comparative study of three 10th-century pilgrimage texts, identifying three recurring characteristics — <strong>identity</strong>, <strong>time and space</strong>, and <strong>memory</strong> — across very different forms. Jones's central contribution for this course is the three-geometry framework: Brendan's voyage as <em>the cycle</em> (circular, anchored by the monastic calendar), Sigeric's itinerary as <em>the line</em> (strict, horizontal, the land a measurable barrier), The Wanderer's exile as <em>the void</em> (aimless drift, resolved only by vertical ascension). This framework is the structural tool for the Day 8 Lightning Talk comparative exercise. Jones's thesis grew out of her own pilgrimage along the Via Francigena to Rome — she writes as both scholar and pilgrim. Properly cited: Jones, Sandra Anne. "Three Pilgrims Searching for Home." MA Thesis, English and Linguistics Programme, 2023.
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-link dim" style="cursor:default">Available via Dr. Olsen</span>
+        <span class="rc-day-tag">Days 5, 8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--coral)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--coral)">Primary source · Old English elegy</div>
+        <div class="rc-title">The Wanderer — Translation and Commentary</div>
+        <div class="rc-author">Various translators · Exeter Book · c. 960–970</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        A 115-line Old English elegy preserved in the Exeter Book — the same manuscript that contains over 30 poems and 90 riddles, bequeathed to Exeter Cathedral in the 11th century. The poem traces the interior pilgrimage of a solitary thegn cast into exile after his lord's death, rowing on a frost-cold sea, haunted by hallucinations of the hall he has lost. Its central movement is the <em>ubi sunt</em> motif: <em>Hwær cwom mearg? Hwær cwom mago?</em> — "Where has the horse gone? Where the rider?" This is the voice of the Blasket Islands viewed from Slea Head. Read before Day 3. The Exeter Book digital facsimile is available online — the actual manuscript page, written by a single scribe, is worth seeing alongside the translation.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://theexeterbook.exeter.ac.uk/viewer.html?imageset=double&image=76v-77r" target="_blank" rel="noopener">Exeter Book facsimile ↗</a>
+        <a class="rc-link" href="https://www.poetryfoundation.org/poems/53565/the-wanderer-56d23b8738fb1" target="_blank" rel="noopener">Translation ↗</a>
+        <span class="rc-day-tag">Days 3, 8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Sigeric's Itinerary — British Library manuscript image and commentary (Cotton Tiberius B.V)</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: IGNATIAN
+═══════════════════════════════════════════════════════════ -->
+<div id="section-ignatian" class="s-panel">
+
+  <div class="section-intro">
+    The Ignatian tradition enters the course not as doctrine but as a set of practical instruments: the daily examen, the application of the senses, consolation and desolation, <em>contemplatio in actione</em>. These tools require no prior Jesuit formation. They are methods of honest self-observation available to anyone willing to pay attention.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--purple)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--purple)">Ignatian formation · Gallagher</div>
+        <div class="rc-title">'Enlarging the Mind': Michael Paul Gallagher SJ and the Imagination</div>
+        <div class="rc-author">Nicolas Steeves SJ · Ignaziana: Rivista di Ricerca Teologica</div>
+      </div>
+      <span class="rc-badge badge-print">Print · Packet</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The intellectual framework of the daily exercises draws substantially from Michael Paul Gallagher SJ (1939–2015), Irish Jesuit, literary scholar, and theologian at the Pontifical Gregorian University in Rome. Steeves's memorial essay traces Gallagher's method: making unlike things sit down and listen to each other — Thérèse de Lisieux and Nietzsche, Rahner and Rilke — until something genuine passes between them. His governing principle, drawn from Newman, was <em>enlarging the mind</em>; his governing gesture, from Luke 5:4, was <em>duc in altum</em> — put out into the deep. For secular students: Gallagher's approach does not require theological assent. It requires only a willingness to take seriously what you encounter. Key works: <em>Dive Deeper: The Human Poetry of Faith</em> (2001); <em>Clashing Symbols</em> (1997); <em>Faith Maps</em> (2010).
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">All days</span>
+        <span class="rc-link dim" style="cursor:default">In your course reader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--purple)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--purple)">Ignatian · Daily examen</div>
+        <div class="rc-title">How to Do the Examen Prayer</div>
+        <div class="rc-author">Ignatian Spirituality · IgnatianSpirituality.com</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        A plain-language introduction to the daily examen — the five-step review of the day that structures the evening section of the daily exercises. The examen is not a guilt exercise. It is a form of honest self-observation: where did my attention open today, and where did it close? Ignatius called these movements <em>consolación</em> and <em>desolación</em> — not emotions, but directions of energy. This resource introduces the practice clearly for students with no prior Ignatian background. Read before Day 1. The version used in the exercises is adapted for the field context — you do not need a chapel, a candle, or any particular posture. You need five minutes and honesty.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://www.ignatianspirituality.com/ignatian-prayer/the-examen/" target="_blank" rel="noopener">Read at IgnatianSpirituality.com ↗</a>
+        <span class="rc-day-tag">Days 1–8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Ignatius of Loyola, <em>Spiritual Exercises</em> — selected passages: First Principle and Foundation; Rules for Discernment; Contemplation to Attain Love</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Gallagher, Michael Paul. <em>Dive Deeper: The Human Poetry of Faith</em> — selected chapter on faith and imagination</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: LITERARY & NORTH ATLANTIC
+═══════════════════════════════════════════════════════════ -->
+<div id="section-literary" class="s-panel">
+
+  <div class="section-intro">
+    The literary door into this course is the one that stays open regardless of the student's relationship to religion. Mackay Brown, Muir, and the Irish poets offer a North Atlantic vernacular in which the sacred is held in plain material language — no assent required, only attention.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--gold)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--gold)">Poetry · North Atlantic vernacular</div>
+        <div class="rc-title">"Beachcomber"</div>
+        <div class="rc-author">George Mackay Brown · from <em>Fishermen with Ploughs</em> (Hogarth Press, 1971)</div>
+      </div>
+      <span class="rc-badge badge-print">Print · Packet</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The poem that opens the daily exercises and establishes the North Atlantic vernacular for the whole course. Seven stanzas, one per day of the week, each recording what the sea returned to the beachcomber. Plain language. Precise observation. The sacred held in material images without announcement: Tuesday's timber that "next winter will be a chair, a coffin, a bed"; Friday's skull with sand spilling from it "the way time is told on kirkyard stones"; Sunday's question — "What's heaven? A sea chest with a thousand gold coins." Mackay Brown (1921–1996) lived his entire life in Orkney, a North Atlantic archipelago structurally identical to the Kerry coast. He converted to Catholicism in 1961. Read this poem once before departure. Read it again standing on the shore at Slea Head. Note what is different. © Estate of George Mackay Brown / John Murray. Reproduced by permission in course materials.
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">Days 1–8 · opens exercises page</span>
+        <span class="rc-link dim" style="cursor:default">In your course reader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--gold)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--gold)">Prose · Story and Fable</div>
+        <div class="rc-title"><em>The Story and the Fable</em> — Selected Passages</div>
+        <div class="rc-author">Edwin Muir · Autobiography (1954) · Excerpts in course reader</div>
+      </div>
+      <span class="rc-badge badge-print">Print · Packet</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Edwin Muir (1887–1959) grew up on the island of Wyre in Orkney — a North Atlantic upbringing that gave him the same landscape intuition as Mackay Brown. His <em>Autobiography</em> contains the governing framework for the course's journaling practice: the distinction between <em>Story</em> (what happens in a life) and <em>Fable</em> (the deeper pattern beneath what happens). Muir could not write the Fable directly — he could only notice the moments when it briefly surfaced through the Story. The pilgrimage is one of those moments. Two passages are essential: the Glasgow tramcar experience (the terror of seeing fellow passengers as animals — the cost of fully materialist thinking) and the Achilles-Hector poem (written thirty years after a childhood shame, which the poem then cleared). The second passage is the argument for why the field journal matters.
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">Days 1, 3, 7</span>
+        <span class="rc-link dim" style="cursor:default">In your course reader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--gold)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--gold)">Poetry · Irish literary tradition</div>
+        <div class="rc-title">Poetry Portal — Eight Poems for Memorization</div>
+        <div class="rc-author">Heaney · Ó Tuama · Boland · Ní Dhomhnaill · Montague · O'Donohue</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The companion portal contains all eight course poems with contextual notes, four-step memorization sequences, cloze exercises, recall scoring, and AI audit trail forms. The poems are not decoration — they are a form of knowing available to the body that the analytical essay cannot replicate. Heaney's "The Peninsula" enacts the course's central paradox: "you will not arrive / but pass through, though always skirting landfall." His "Postscript" (often called Heaney's perfect poem) describes the Atlantic light working off the ocean and the earthed lightning of swans — the Ignatian <em>consolación sin causa</em> in lyric form. Ní Dhomhnaill's bilingual "An Crann" holds the tension of two languages that cannot fully translate each other — the condition of every student in this landscape.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="index.html">Open poetry portal ↗</a>
+        <span class="rc-day-tag">Days 1–8</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Mackay Brown, George. <em>Beside the Ocean of Time</em> — selected prose passages on Orcadian landscape and sacred time</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">O'Donohue, John. <em>Anam Cara</em> — selections on the soul friend, the landscape of the west of Ireland, and Celtic blessing</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: SCHOLARLY SOURCES
+═══════════════════════════════════════════════════════════ -->
+<div id="section-scholarly" class="s-panel">
+
+  <div class="section-intro">
+    These are the scholarly sources underpinning the course's intellectual framework. Students are not required to read them in full — the exercises distill what is essential. But for those writing the Site/Poem Analysis or preparing the Lightning Talk, these are the sources that can be cited with confidence.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--purple)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--purple)">Scholarly · Ignatian imagination</div>
+        <div class="rc-title">'Enlarging the Mind': Michael Paul Gallagher SJ and the Imagination</div>
+        <div class="rc-author">Nicolas Steeves SJ · <em>Ignaziana: Rivista di Ricerca Teologica</em></div>
+      </div>
+      <span class="rc-badge badge-print">Print · Packet</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Steeves's memorial essay is the most accessible introduction to Gallagher's method and its relevance to courses that bring together literature, theology, and secular culture. Cite as: Steeves, Nicolas SJ. "'Enlarging the Mind': Michael Paul Gallagher and the Imagination." <em>Ignaziana: Rivista di Ricerca Teologica</em>. See also Gallagher's own works: <em>Dive Deeper</em> (Darton, Longman & Todd, 2001); <em>Clashing Symbols</em> (DLT, 1997); <em>Faith Maps</em> (DLT, 2010).
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">All days · Lightning Talk</span>
+        <span class="rc-link dim" style="cursor:default">In your course reader</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--purple)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--purple)">Scholarly · Medieval pilgrimage</div>
+        <div class="rc-title">Three Pilgrims Searching for Home</div>
+        <div class="rc-author">Sandra Anne Jones · MA Thesis · 2023</div>
+      </div>
+      <span class="rc-badge badge-thesis">Scholarly · Thesis</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Full citation: Jones, Sandra Anne. "Three Pilgrims Searching for Home: The Itinerary of Archbishop Sigeric, the <em>Navigatio Sancti Brendani Abbatis</em> and <em>The Wanderer</em>." MA Thesis, English and Linguistics Programme, 2023. Jones identifies three recurring characteristics in 10th-century pilgrimage literature — identity, time and space, and memory — across three texts. Her three-geometry framework (cycle / line / void) is the structural tool for Day 8 Lightning Talk preparation. Her reading of the <em>ubi sunt</em> motif in <em>The Wanderer</em> directly informs the Day 3 Blasket Islands exercise. Available via Dr. Olsen. The NotebookLM visual slides generated from the thesis are also available as a course supplement.
+      </div>
+      <div class="rc-link-row">
+        <span class="rc-day-tag">Days 3, 5, 8</span>
+        <span class="rc-link dim" style="cursor:default">Available via Dr. Olsen</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Ward, Benedicta SLG. <em>The Sayings of the Desert Fathers: The Alphabetical Collection</em>. Cistercian Publications, 1975/1984 — the scholarly standard for the <em>Apophthegmata</em></div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Lane, Belden C. <em>Landscapes of the Sacred: Geography and Narrative in American Spirituality</em> — chapters 1–2 (in course reader)</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">O'Meara, John J., trans. <em>The Voyage of Saint Brendan</em>. Portlaoise, 1976 — the standard English translation of the <em>Navigatio</em></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION: FIELD & SITE
+═══════════════════════════════════════════════════════════ -->
+<div id="section-field" class="s-panel">
+
+  <div class="section-intro">
+    These resources are for use in the field — on site, in hand, before and during the excursions. The sites speak more clearly when you know what to look for. The Irish language reference and the site guides are the practical companions to the exercises.
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Field tool · Irish pronunciation</div>
+        <div class="rc-title">Teanglann — Irish Language Dictionary and Pronunciation</div>
+        <div class="rc-author">Foras na Gaeilge · teanglann.ie</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The authoritative Irish language resource — dictionary, grammar, and audio pronunciation. Use it to hear how the place-names you are walking through are actually spoken: <em>Díseart</em>, <em>Clochán</em>, <em>Cosán na Naomh</em>, <em>Slea Head</em>, <em>Gallarus</em>. The exercises ask you to learn a few key terms; this is where you hear them. Ní Dhomhnaill's poem "An Crann" is in your poetry portal in both Irish and English — Teanglann will help you hear the Irish lines before you read them aloud, which is the correct order.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://www.teanglann.ie" target="_blank" rel="noopener">Open Teanglann ↗</a>
+        <span class="rc-day-tag">All days · Irish language</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Field tool · Site archaeology</div>
+        <div class="rc-title">Gallarus Oratory and Reask Monastic Site — Heritage Ireland</div>
+        <div class="rc-author">Heritage Ireland / OPW · heritageireland.ie</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The Office of Public Works maintains both sites and provides accurate site histories. Useful for orienting before the Day 2 excursion. Note: the OPW pages give the historical and archaeological account. The exercises add the theological and phenomenological layer — what the site does to your body, not only what it was. Read the OPW page for the historical account; then set the phone down and walk in.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://www.heritageireland.ie/visit/places-to-visit/gallarus-oratory/" target="_blank" rel="noopener">Gallarus ↗</a>
+        <a class="rc-link" href="https://www.heritageireland.ie" target="_blank" rel="noopener">Heritage Ireland ↗</a>
+        <span class="rc-day-tag">Day 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Field tool · Blasket Islands</div>
+        <div class="rc-title">The Great Blasket Centre — Ionad an Bhlascaoid Mhóir</div>
+        <div class="rc-author">blasket.ie</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        The heritage centre on the mainland opposite the Great Blasket Island holds the documentary record of the island community evacuated in 1953. If weather prevents the Slea Head circuit, the Blasket Centre is the indoor alternative for Day 3 archival work. Peig Sayers's autobiography, the island census records, and the emigration maps are held here. The Day 3 exercise on <em>ubi sunt</em> and the Blasket field walls is most powerful when you can see the island across the water. The Centre gives you the human record that the view alone cannot.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://blasket.ie" target="_blank" rel="noopener">Open blasket.ie ↗</a>
+        <span class="rc-day-tag">Day 3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="rc-head">
+      <div class="rc-accent" style="background:var(--teal)"></div>
+      <div class="rc-meta">
+        <div class="rc-type" style="color:var(--teal)">Field tool · Mount Brandon route</div>
+        <div class="rc-title">Mount Brandon — Cosán na Naomh Route Guide</div>
+        <div class="rc-author">Walking Kerry / Kerry Mountain Rescue</div>
+      </div>
+      <span class="rc-badge badge-free">Free · Online</span>
+    </div>
+    <div class="rc-body">
+      <div class="rc-annotation">
+        Route information, weather guidance, and safety protocols for the Day 7 Mount Brandon ascent. Kerry Mountain Rescue provides current conditions. Note the course provides a van-support alternative (Kilmalkedar Pilgrim Stations route) for all students — no one is required to summit. The Day 7 exercises are designed for both routes: what matters is the effort, the body's engagement with altitude or distance, and the moment of turning back or arriving. Read before Day 7.
+      </div>
+      <div class="rc-link-row">
+        <a class="rc-link" href="https://www.walkingkerry.com" target="_blank" rel="noopener">Walking Kerry ↗</a>
+        <a class="rc-link" href="https://www.kerrymountainrescue.ie" target="_blank" rel="noopener">Kerry Mountain Rescue ↗</a>
+        <span class="rc-day-tag">Day 7</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Cosán na Naomh StoryMap — interactive route guide with site annotations and historical overlay</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <div>
+      <div class="cs-label">Coming soon</div>
+      <div class="cs-title">Downloadable field journal template (PDF) — all six required entries, AI audit trail, submission checklist</div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /shell -->
+
+<footer class="site-footer">
+  TRS 199 · Dr. Cyrus Paul Olsen III · Sacred Heart University · Dingle, Co. Kerry, Ireland
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.s-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.s-tab').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected','false');
+  });
+  const panel = document.getElementById('section-' + id);
+  if (panel) panel.classList.add('active');
+  const tabs = document.querySelectorAll('.s-tab');
+  const order = ['desert','navigatio','ignatian','literary','scholarly','field'];
+  const idx = order.indexOf(id);
+  if (tabs[idx]) {
+    tabs[idx].classList.add('active');
+    tabs[idx].setAttribute('aria-selected','true');
+  }
+}
+</script>
+</body>
+</html>
