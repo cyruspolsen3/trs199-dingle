@@ -12,6 +12,9 @@ A connected pair of browser-based study tools for students enrolled in **TRS 199
 | **Poetry Memorization Portal** | [cyruspolsen3.github.io/trs199-dingle](https://cyruspolsen3.github.io/trs199-dingle) | Eight poems · five study modes · recall scoring |
 | **Daily Spiritual Exercises** | [cyruspolsen3.github.io/trs199-dingle/exercises.html](https://cyruspolsen3.github.io/trs199-dingle/exercises.html) | Eight days · three traditions · plain-language entry points |
 
+| **Course Resources** | [cyruspolsen3.github.io/trs199-dingle/resources.html](https://cyruspolsen3.github.io/trs199-dingle/resources.html) | Annotated sources · site guides · living document |
+| **Course Syllabus** | [cyruspolsen3.github.io/trs199-dingle/syllabus.html](https://cyruspolsen3.github.io/trs199-dingle/syllabus.html) | Revised v3 · all materials · assignments · schedule |
+
 Both pages share the same visual world and link to each other. Students move between them freely.
 
 ---
@@ -72,6 +75,10 @@ The secular and literary door remains open throughout. No exercise requires prio
 | 7 | Tue Jun 2 | Pilgrimage & the Body | Mount Brandon · Kilmalkedar |
 | 8 | Wed Jun 3 | Global Pilgrimage & Integration | Lightning Talks · Closing Circle |
 
+**Syllabus** — `syllabus.html` is a self-contained HTML document. To update course details, dates, or policies, click the file in the GitHub repo, click the pencil icon, edit directly, and commit. Schedule blocks are collapsible — each `sched-block` div contains a header and a body; add bullet items inside the `<ul>` in any `sb-body` div.
+
+**Resources** — to add a new resource card to `resources.html`, copy any existing `resource-card` div within the relevant section panel, update the content, and commit. To convert a "coming soon" block to a full card, replace the `coming-soon` div with a `resource-card` div.
+
 ---
 
 ## Using the tools
@@ -105,6 +112,8 @@ Both tools are single HTML files with no external dependencies beyond Google Fon
 trs199-dingle/
 ├── index.html        ← Poetry memorization portal
 ├── exercises.html    ← Daily spiritual exercises
+├── resources.html    ← Course resources (living document)
+├── syllabus.html     ← Course syllabus (revised v3)
 ├── README.md         ← this file
 ├── LICENSE           ← MIT (code) + CC BY-NC 4.0 (content)
 └── .gitignore
