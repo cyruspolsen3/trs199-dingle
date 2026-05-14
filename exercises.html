@@ -7,511 +7,121 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0e0f0d;
-  --bg2:#161712;
-  --bg3:#1d1e19;
-  --bg4:#252620;
-  --ruled:#2a2b24;
-  --gold:#c9a84c;
-  --gold-dim:#8a6e2f;
-  --gold-pale:#e8d49a;
-  --ivory:#f0ead8;
-  --ivory-dim:#a09880;
-  --ivory-hint:#504d42;
-  --teal:#4a9e82;
-  --teal-dim:#2d6653;
-  --coral:#b8613a;
-  --amber:#c9a84c;
-  --morn:#c9a84c;
-  --aftn:#4a9e82;
-  --evng:#7c6abf;
-  --r:6px;
-  --r-lg:10px;
-  --font-display:'Cinzel',serif;
-  --font-body:'EB Garamond',Georgia,serif;
+  --bg:#0e0f0d;--bg2:#161712;--bg3:#1d1e19;--bg4:#252620;
+  --ruled:#2a2b24;--gold:#c9a84c;--gold-dim:#8a6e2f;--gold-pale:#e8d49a;
+  --ivory:#f0ead8;--ivory-dim:#a09880;--ivory-hint:#504d42;
+  --teal:#4a9e82;--teal-dim:#2d6653;--coral:#b8613a;--purple:#7c6abf;
+  --morn:#c9a84c;--aftn:#4a9e82;--evng:#7c6abf;
+  --r:6px;--r-lg:10px;
+  --font-display:'Cinzel',serif;--font-body:'EB Garamond',Georgia,serif;
   --font-mono:'Source Code Pro',monospace;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
-
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--ivory);
-  font-family:var(--font-body);
-  font-size:18px;
-  line-height:1.75;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size:256px 256px;
-  pointer-events:none;
-  z-index:1000;
-  opacity:0.35;
-}
-
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
-
+body{background:var(--bg);color:var(--ivory);font-family:var(--font-body);font-size:18px;line-height:1.75;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-size:256px 256px;pointer-events:none;z-index:1000;opacity:0.35}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
 .shell{max-width:880px;margin:0 auto;padding:0 1.5rem 5rem}
-
-/* ── MASTHEAD ── */
-.masthead{
-  padding:3.5rem 0 1.5rem;
-  text-align:center;
-  animation:fade-up 0.7s var(--ease) both;
-}
-.masthead .eyebrow{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.2em;
-  color:var(--gold-dim);
-  text-transform:uppercase;
-  margin-bottom:1rem;
-}
-.masthead h1{
-  font-family:var(--font-display);
-  font-size:clamp(1.5rem,3.5vw,2.4rem);
-  font-weight:400;
-  color:var(--gold);
-  letter-spacing:0.04em;
-  line-height:1.2;
-  margin-bottom:0.5rem;
-}
-.masthead .sub{
-  font-style:italic;
-  font-size:1rem;
-  color:var(--ivory-dim);
-}
-
-/* ── OPENING POEM ── */
-.opening-poem{
-  margin:2.5rem auto 2.5rem;
-  max-width:520px;
-  border-left:2px solid var(--gold-dim);
-  padding:1.25rem 1.5rem;
-  background:var(--bg2);
-  border-radius:0 var(--r-lg) var(--r-lg) 0;
-  animation:fade-up 0.8s var(--ease) 0.15s both;
-}
-.opening-poem .poem-body{
-  font-family:var(--font-body);
-  font-size:0.95rem;
-  line-height:1.9;
-  color:var(--ivory);
-  white-space:pre-line;
-}
-.opening-poem .poem-attr{
-  margin-top:1rem;
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  color:var(--ivory-hint);
-  text-transform:uppercase;
-}
-
-/* ── BOETHIAN KEY ── */
-.boethian-key{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:0 0 2.5rem;
-  animation:fade-up 0.8s var(--ease) 0.25s both;
-}
-.bk-cell{
-  background:var(--bg3);
-  border:1px solid var(--ruled);
-  border-radius:var(--r-lg);
-  padding:12px 14px;
-  text-align:center;
-}
-.bk-time{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.bk-latin{
-  font-family:var(--font-display);
-  font-size:11px;
-  margin-bottom:3px;
-}
-.bk-plain{
-  font-size:0.8rem;
-  color:var(--ivory-dim);
-  font-style:italic;
-  line-height:1.4;
-}
-.bk-cell.morn .bk-time{color:var(--morn)}
-.bk-cell.morn .bk-latin{color:var(--morn)}
-.bk-cell.aftn .bk-time{color:var(--aftn)}
-.bk-cell.aftn .bk-latin{color:var(--aftn)}
-.bk-cell.evng .bk-time{color:var(--evng)}
-.bk-cell.evng .bk-latin{color:var(--evng)}
-
-/* ── DAY NAV ── */
-.day-nav{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
-  gap:7px;
-  margin-bottom:2rem;
-  animation:fade-up 0.8s var(--ease) 0.3s both;
-}
-.day-btn{
-  background:var(--bg3);
-  border:1px solid var(--ruled);
-  border-radius:var(--r);
-  padding:9px 6px;
-  cursor:pointer;
-  text-align:center;
-  transition:border-color 0.2s,background 0.2s,transform 0.15s;
-}
+.masthead{padding:3.5rem 0 1.5rem;text-align:center;animation:fade-up 0.7s var(--ease) both}
+.masthead .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:1rem}
+.masthead h1{font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:400;color:var(--gold);letter-spacing:0.04em;line-height:1.2;margin-bottom:0.5rem}
+.masthead .sub{font-style:italic;font-size:1rem;color:var(--ivory-dim)}
+.portal-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;animation:fade-up 0.7s var(--ease) 0.1s both}
+.nav-link{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ivory-hint);text-decoration:none;padding:6px 12px;border:1px solid var(--ruled);border-radius:var(--r);transition:border-color 0.15s,color 0.15s}
+.nav-link:hover{border-color:var(--gold-dim);color:var(--gold)}
+.opening-poem{margin:0 0 2.5rem;border-left:2px solid var(--gold-dim);padding:1.25rem 1.5rem;background:var(--bg2);border-radius:0 var(--r-lg) var(--r-lg) 0;animation:fade-up 0.8s var(--ease) 0.15s both}
+.opening-poem .poem-body{font-family:var(--font-body);font-size:0.95rem;line-height:1.9;color:var(--ivory);white-space:pre-line}
+.opening-poem .poem-attr{margin-top:1rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--ivory-hint);text-transform:uppercase}
+.boethian-key{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 2rem;animation:fade-up 0.8s var(--ease) 0.25s both}
+.bk-cell{background:var(--bg3);border:1px solid var(--ruled);border-radius:var(--r-lg);padding:12px 14px;text-align:center}
+.bk-time{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.bk-latin{font-family:var(--font-display);font-size:11px;margin-bottom:3px}
+.bk-plain{font-size:0.8rem;color:var(--ivory-dim);font-style:italic;line-height:1.4}
+.bk-cell.morn .bk-time,.bk-cell.morn .bk-latin{color:var(--morn)}
+.bk-cell.aftn .bk-time,.bk-cell.aftn .bk-latin{color:var(--aftn)}
+.bk-cell.evng .bk-time,.bk-cell.evng .bk-latin{color:var(--evng)}
+.glossary{background:var(--bg2);border:1px solid var(--ruled);border-radius:var(--r-lg);overflow:hidden;margin-bottom:2rem;animation:fade-up 0.8s var(--ease) 0.3s both}
+.glossary-head{padding:10px 16px;border-bottom:1px solid var(--ruled);display:flex;align-items:center;gap:8px;cursor:pointer}
+.glossary-head span{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--ivory-hint);text-transform:uppercase;flex:1}
+.glossary-head .g-arrow{font-family:var(--font-mono);font-size:11px;color:var(--ivory-hint);transition:transform 0.2s}
+.glossary-head.open .g-arrow{transform:rotate(90deg)}
+.glossary-body{display:none;padding:14px 16px}
+.glossary-body.visible{display:block}
+.g-row{display:grid;grid-template-columns:130px 150px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid var(--ruled);font-size:0.875rem;align-items:baseline}
+.g-row:last-child{border-bottom:none}
+.g-irish{font-family:var(--font-display);font-size:0.9rem;color:var(--gold-pale)}
+.g-pron{font-family:var(--font-mono);font-size:10.5px;color:var(--ivory-hint);letter-spacing:0.04em}
+.g-meaning{color:var(--ivory-dim)}
+.day-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;margin-bottom:2rem;animation:fade-up 0.8s var(--ease) 0.3s both}
+.day-btn{background:var(--bg3);border:1px solid var(--ruled);border-radius:var(--r);padding:9px 6px;cursor:pointer;text-align:center;transition:border-color 0.2s,background 0.2s,transform 0.15s}
 .day-btn:hover{border-color:var(--gold-dim);background:var(--bg4);transform:translateY(-1px)}
 .day-btn.active{border-color:var(--gold);background:var(--bg4)}
-.day-btn .db-label{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  color:var(--ivory-hint);
-  text-transform:uppercase;
-  margin-bottom:3px;
-}
-.day-btn .db-theme{
-  font-family:var(--font-body);
-  font-size:11.5px;
-  color:var(--ivory-dim);
-  line-height:1.3;
-}
+.day-btn .db-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--ivory-hint);text-transform:uppercase;margin-bottom:3px}
+.day-btn .db-theme{font-family:var(--font-body);font-size:11.5px;color:var(--ivory-dim);line-height:1.3}
 .day-btn.active .db-theme{color:var(--gold)}
-
-/* ── DAY WORKSPACE ── */
 .day-workspace{display:none}
 .day-workspace.visible{display:block;animation:fade-up 0.45s var(--ease) both}
-
-.day-header{
-  padding:1.25rem 0 1rem;
-  border-bottom:1px solid var(--ruled);
-  margin-bottom:1.75rem;
-}
-.dh-day{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.15em;
-  color:var(--teal);
-  text-transform:uppercase;
-  margin-bottom:0.3rem;
-}
-.dh-title{
-  font-family:var(--font-display);
-  font-size:1.4rem;
-  font-weight:400;
-  color:var(--gold);
-  letter-spacing:0.03em;
-  margin-bottom:0.3rem;
-}
-.dh-sites{
-  font-size:0.9rem;
-  color:var(--ivory-dim);
-  font-style:italic;
-}
-.dh-note{
-  margin-top:0.75rem;
-  font-size:0.9rem;
-  color:var(--ivory-dim);
-  line-height:1.65;
-  padding:0.75rem 1rem;
-  border-left:2px solid var(--ruled);
-  background:var(--bg2);
-  border-radius:0 var(--r) var(--r) 0;
-}
-
-/* ── RHYTHM BANDS ── */
-.rhythm-band{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:1.5rem 0 1rem;
-}
-.rb-pip{
-  width:10px;height:10px;
-  border-radius:50%;
-  flex-shrink:0;
-}
-.rb-pip.morn{background:var(--morn)}
-.rb-pip.aftn{background:var(--aftn)}
-.rb-pip.evng{background:var(--evng)}
-.rb-label{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-}
-.rb-label.morn{color:var(--morn)}
-.rb-label.aftn{color:var(--aftn)}
-.rb-label.evng{color:var(--evng)}
-.rb-sub{
-  font-size:0.82rem;
-  color:var(--ivory-hint);
-  font-style:italic;
-  margin-left:2px;
-}
-
-/* ── EXERCISE CARD ── */
-.ex-card{
-  background:var(--bg2);
-  border:1px solid var(--ruled);
-  border-radius:var(--r-lg);
-  overflow:hidden;
-  margin-bottom:1rem;
-}
-.ex-head{
-  padding:14px 16px 10px;
-  border-bottom:1px solid var(--ruled);
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-}
-.ex-icon{
-  width:34px;height:34px;
-  border-radius:var(--r);
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;
-  flex-shrink:0;
-  margin-top:2px;
-}
+.day-header{padding:1.25rem 0 1rem;border-bottom:1px solid var(--ruled);margin-bottom:1.5rem}
+.dh-day{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;color:var(--teal);text-transform:uppercase;margin-bottom:0.3rem}
+.dh-title{font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--gold);letter-spacing:0.03em;margin-bottom:0.3rem}
+.dh-sites{font-size:0.9rem;color:var(--ivory-dim);font-style:italic;margin-bottom:0.75rem}
+.governing-q{background:var(--bg2);border:1px solid var(--gold-dim);border-radius:var(--r-lg);padding:1.25rem 1.5rem;margin-bottom:1.75rem}
+.gq-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.5rem}
+.gq-text{font-family:var(--font-display);font-size:1.05rem;font-weight:400;color:var(--gold);line-height:1.5}
+.gq-note{margin-top:0.6rem;font-size:0.875rem;color:var(--ivory-hint);font-style:italic;line-height:1.6}
+.rhythm-band{display:flex;align-items:center;gap:10px;margin:1.5rem 0 1rem}
+.rb-pip{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.rb-pip.morn{background:var(--morn)}.rb-pip.aftn{background:var(--aftn)}.rb-pip.evng{background:var(--evng)}
+.rb-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase}
+.rb-label.morn{color:var(--morn)}.rb-label.aftn{color:var(--aftn)}.rb-label.evng{color:var(--evng)}
+.rb-sub{font-size:0.82rem;color:var(--ivory-hint);font-style:italic;margin-left:2px}
+.ex-card{background:var(--bg2);border:1px solid var(--ruled);border-radius:var(--r-lg);overflow:hidden;margin-bottom:1rem}
+.ex-head{padding:13px 16px 9px;border-bottom:1px solid var(--ruled);display:flex;align-items:flex-start;gap:10px}
+.ex-icon{width:32px;height:32px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:2px}
 .ex-icon.gold{background:rgba(201,168,76,0.12);color:var(--gold)}
 .ex-icon.teal{background:rgba(74,158,130,0.12);color:var(--teal)}
 .ex-icon.coral{background:rgba(184,97,58,0.12);color:var(--coral)}
 .ex-icon.purple{background:rgba(124,106,191,0.12);color:#9d8fd4}
 .ex-meta{flex:1}
-.ex-title{
-  font-family:var(--font-body);
-  font-size:1.05rem;
-  font-weight:500;
-  color:var(--ivory);
-  margin-bottom:2px;
-}
-.ex-duration{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.08em;
-  color:var(--ivory-hint);
-  text-transform:uppercase;
-}
-
-.ex-body{padding:14px 16px}
-.ex-invitation{
-  font-size:1rem;
-  color:var(--ivory);
-  line-height:1.75;
-  margin-bottom:1rem;
-}
-.ex-prompt{
-  font-size:0.9rem;
-  color:var(--ivory-dim);
-  font-style:italic;
-  line-height:1.65;
-  padding:10px 14px;
-  background:var(--bg3);
-  border-radius:var(--r);
-  border-left:2px solid var(--gold-dim);
-  border-top-left-radius:0;
-  border-bottom-left-radius:0;
-  margin-bottom:0.75rem;
-}
-
-/* deeper note toggle */
-.deeper-toggle{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--ivory-hint);
-  padding:4px 0;
-  transition:color 0.15s;
-  margin-top:2px;
-}
+.ex-title{font-family:var(--font-body);font-size:1rem;font-weight:500;color:var(--ivory);margin-bottom:2px}
+.ex-duration{font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;color:var(--ivory-hint);text-transform:uppercase}
+.ex-body{padding:13px 16px}
+.ex-invitation{font-size:0.95rem;color:var(--ivory);line-height:1.72;margin-bottom:0.85rem}
+.ex-prompt{font-size:0.875rem;color:var(--ivory-dim);font-style:italic;line-height:1.6;padding:9px 13px;background:var(--bg3);border-radius:var(--r);border-left:2px solid var(--gold-dim);border-top-left-radius:0;border-bottom-left-radius:0;margin-bottom:0.6rem}
+.deeper-toggle{display:flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ivory-hint);padding:4px 0;transition:color 0.15s;margin-top:2px}
 .deeper-toggle:hover{color:var(--teal)}
-.deeper-toggle .dt-arrow{
-  display:inline-block;
-  transition:transform 0.2s;
-  font-style:normal;
-}
+.deeper-toggle .dt-arrow{display:inline-block;transition:transform 0.2s;font-style:normal}
 .deeper-toggle.open{color:var(--teal)}
 .deeper-toggle.open .dt-arrow{transform:rotate(90deg)}
-
-.deeper-note{
-  display:none;
-  margin-top:10px;
-  padding:12px 14px;
-  background:var(--bg3);
-  border:1px solid var(--ruled);
-  border-radius:var(--r-lg);
-  font-size:0.875rem;
-  color:var(--ivory-dim);
-  line-height:1.7;
-}
+.deeper-note{display:none;margin-top:10px;padding:11px 13px;background:var(--bg3);border:1px solid var(--ruled);border-radius:var(--r-lg);font-size:0.875rem;color:var(--ivory-dim);line-height:1.7}
 .deeper-note.visible{display:block}
-.deeper-note .dn-tradition{
-  font-family:var(--font-mono);
-  font-size:9.5px;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--teal);
-  margin-bottom:6px;
-}
+.deeper-note .dn-tradition{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
 .deeper-note em{color:var(--gold-pale);font-style:italic}
-.deeper-note .dn-saying{
-  margin-top:8px;
-  padding:8px 12px;
-  border-left:1px solid var(--ruled);
-  font-style:italic;
-  color:var(--ivory-hint);
-  font-size:0.85rem;
-}
+.deeper-note .dn-saying{margin-top:8px;padding:8px 12px;border-left:1px solid var(--ruled);font-style:italic;color:var(--ivory-hint);font-size:0.85rem}
+.bilingual-block{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.75rem 0 1.25rem;background:var(--bg3);border:1px solid var(--ruled);border-radius:var(--r-lg);padding:1rem;font-family:var(--font-body);font-size:0.9rem;line-height:1.85}
+.bl-col .bl-lang{font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ivory-hint);margin-bottom:6px}
+.bl-col .bl-text{color:var(--ivory);white-space:pre-line}
+.film-card{background:var(--bg3);border:1px solid var(--ruled);border-radius:var(--r-lg);padding:1rem 1.25rem;margin-bottom:0.75rem;display:flex;align-items:flex-start;gap:12px}
+.film-icon{width:36px;height:36px;border-radius:var(--r);background:rgba(124,106,191,0.12);color:#9d8fd4;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
+.film-meta{}
+.film-title{font-size:0.95rem;font-weight:500;color:var(--ivory);margin-bottom:2px}
+.film-sub{font-size:0.82rem;color:var(--ivory-hint);font-style:italic;margin-bottom:4px}
+.film-note{font-size:0.875rem;color:var(--ivory-dim);line-height:1.6}
+.syncletica-opener{background:var(--bg2);border:1px solid var(--ruled);border-left:3px solid var(--gold-dim);border-radius:0 var(--r-lg) var(--r-lg) 0;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.so-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.75rem}
+.so-quote{font-style:italic;color:var(--ivory);line-height:1.75;font-size:0.95rem;margin-bottom:0.5rem}
+.so-attr{font-family:var(--font-mono);font-size:10px;color:var(--ivory-hint);letter-spacing:0.06em}
+.so-intro{margin-top:0.85rem;font-size:0.875rem;color:var(--ivory-dim);line-height:1.65}
+.day1-space{background:var(--bg2);border:1px dashed var(--ruled);border-radius:var(--r-lg);padding:1.5rem;min-height:80px;margin-bottom:1.25rem}
+.ds-label{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ivory-hint);margin-bottom:0.5rem}
+.ds-prompt{font-size:0.95rem;color:var(--ivory-dim);font-style:italic;line-height:1.65}
+.site-footer{border-top:1px solid var(--ruled);margin-top:3rem;padding:1.5rem 0;text-align:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;color:var(--ivory-hint);text-transform:uppercase}
+@keyframes fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.boethian-key{grid-template-columns:1fr}.day-nav{grid-template-columns:repeat(4,1fr)}.bilingual-block{grid-template-columns:1fr}.g-row{grid-template-columns:1fr 1fr}.g-pron{display:none}}
 
-/* ── GLOSSARY PANEL ── */
-.glossary{
-  background:var(--bg2);
-  border:1px solid var(--ruled);
-  border-radius:var(--r-lg);
-  overflow:hidden;
-  margin-bottom:2.5rem;
-  animation:fade-up 0.7s var(--ease) 0.4s both;
-}
-.glossary-head{
-  padding:10px 16px;
-  border-bottom:1px solid var(--ruled);
-  display:flex;align-items:center;gap:8px;
-  cursor:pointer;
-}
-.glossary-head span{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.12em;
-  color:var(--ivory-hint);
-  text-transform:uppercase;
-  flex:1;
-}
-.glossary-head .g-arrow{
-  font-family:var(--font-mono);
-  font-size:11px;
-  color:var(--ivory-hint);
-  transition:transform 0.2s;
-}
-.glossary-head.open .g-arrow{transform:rotate(90deg)}
-.glossary-body{
-  display:none;
-  padding:14px 16px;
-}
-.glossary-body.visible{display:block}
-.g-row{
-  display:grid;
-  grid-template-columns:110px 140px 1fr;
-  gap:8px;
-  padding:6px 0;
-  border-bottom:1px solid var(--ruled);
-  font-size:0.875rem;
-  align-items:baseline;
-}
-.g-row:last-child{border-bottom:none}
-.g-irish{
-  font-family:var(--font-display);
-  font-size:0.9rem;
-  color:var(--gold-pale);
-}
-.g-pron{
-  font-family:var(--font-mono);
-  font-size:10.5px;
-  color:var(--ivory-hint);
-  letter-spacing:0.04em;
-}
-.g-meaning{color:var(--ivory-dim)}
-
-/* ── HEANEY GALLARUS NOTE ── */
-.gallarus-note{
-  background:var(--bg2);
-  border:1px solid var(--ruled);
-  border-left:3px solid var(--gold-dim);
-  border-radius:0 var(--r-lg) var(--r-lg) 0;
-  padding:1.25rem 1.5rem;
-  margin-bottom:1.75rem;
-}
-.gallarus-note .gn-label{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.12em;
-  color:var(--gold-dim);
-  text-transform:uppercase;
-  margin-bottom:0.75rem;
-}
-.gallarus-note p{
-  font-size:0.95rem;
-  color:var(--ivory-dim);
-  line-height:1.7;
-}
-.gallarus-note p+p{margin-top:0.6rem}
-
-/* ── NAV LINK ── */
-.portal-nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:2.5rem;
-  animation:fade-up 0.7s var(--ease) 0.2s both;
-}
-.nav-link{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--ivory-hint);
-  text-decoration:none;
-  padding:6px 12px;
-  border:1px solid var(--ruled);
-  border-radius:var(--r);
-  transition:border-color 0.15s,color 0.15s;
-}
-.nav-link:hover{border-color:var(--gold-dim);color:var(--gold)}
-
-/* ── FOOTER ── */
-.site-footer{
-  border-top:1px solid var(--ruled);
-  margin-top:3rem;
-  padding:1.5rem 0;
-  text-align:center;
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  color:var(--ivory-hint);
-  text-transform:uppercase;
-}
-
-@keyframes fade-up{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-@media(max-width:600px){
-  .boethian-key{grid-template-columns:1fr}
-  .day-nav{grid-template-columns:repeat(4,1fr)}
-  .g-row{grid-template-columns:1fr 1fr;gap:4px}
-  .g-pron{display:none}
-}
 </style>
 </head>
 <body>
@@ -520,18 +130,16 @@ body::before{
 <header class="masthead">
   <div class="eyebrow">TRS 199 · Sacred Heart University · Dingle 2026</div>
   <h1>Daily Exercises</h1>
-  <p class="sub">Eight days of attentiveness on the Dingle Peninsula</p>
+  <p class="sub">Seven days of attentiveness on the Dingle Peninsula</p>
 </header>
 
-<nav class="portal-nav" aria-label="Site navigation">
+<nav class="portal-nav">
   <a class="nav-link" href="index.html">← Poetry portal</a>
   <a class="nav-link" href="resources.html">Resources</a>
   <a class="nav-link" href="syllabus.html">Syllabus</a>
-  <a class="nav-link" href="index.html#progress">My progress</a>
 </nav>
 
-<!-- OPENING POEM -->
-<div class="opening-poem" aria-label="Opening poem: Beachcomber by George Mackay Brown">
+<div class="opening-poem">
 <div class="poem-body">Monday I found a boot —
 Rust and salt leather.
 I gave it back to the sea, to dance in.
@@ -559,725 +167,139 @@ Was wrecked last month at The Kame.
 Sunday, for fear of the elders,
 I sit on my bum.
 What's heaven? A sea chest with a thousand gold coins.</div>
-<div class="poem-attr">George Mackay Brown · "Beachcomber" · from Fishermen with Ploughs (1971) · Reproduced by permission of the Estate of George Mackay Brown</div>
+<div class="poem-attr">George Mackay Brown · "Beachcomber" · Fishermen with Ploughs (1971) · © Estate of George Mackay Brown / John Murray</div>
 </div>
 
-<!-- BOETHIAN KEY -->
-<div class="boethian-key" aria-label="Daily rhythm">
-  <div class="bk-cell morn">
-    <div class="bk-time">Morning · 9:30–12:30</div>
-    <div class="bk-latin">Musica Mundana</div>
-    <div class="bk-plain">Attunement to the land — walking, observing, attending to wind, sea, stone</div>
-  </div>
-  <div class="bk-cell aftn">
-    <div class="bk-time">Afternoon · 1:30–4:30</div>
-    <div class="bk-latin">Musica Humana</div>
-    <div class="bk-plain">Interior ordering — reflection, journaling, the mind finding its own rhythm</div>
-  </div>
-  <div class="bk-cell evng">
-    <div class="bk-time">Evening</div>
-    <div class="bk-latin">Musica Instrumentalis</div>
-    <div class="bk-plain">Communal sound — conversation, traditional music, shared story</div>
-  </div>
+<div class="boethian-key">
+  <div class="bk-cell morn"><div class="bk-time">Morning · 9:30–12:30</div><div class="bk-latin">Musica Mundana</div><div class="bk-plain">Attunement to the land — walking, observing, attending to wind, sea, stone</div></div>
+  <div class="bk-cell aftn"><div class="bk-time">Afternoon · 1:30–4:30</div><div class="bk-latin">Musica Humana</div><div class="bk-plain">Interior ordering — reflection, journaling, the mind finding its rhythm</div></div>
+  <div class="bk-cell evng"><div class="bk-time">Evening</div><div class="bk-latin">Musica Instrumentalis</div><div class="bk-plain">Communal sound — conversation, music, shared story, film</div></div>
 </div>
 
-<!-- GLOSSARY -->
 <div class="glossary">
-  <div class="glossary-head" onclick="toggleGlossary()" id="gloss-head">
-    <span>Irish language reference — place-names &amp; key terms</span>
-    <span class="g-arrow">▶</span>
-  </div>
+  <div class="glossary-head" onclick="toggleGlossary()" id="gloss-head"><span>Irish language reference — place-names &amp; key terms</span><span class="g-arrow">&#9658;</span></div>
   <div class="glossary-body" id="gloss-body">
-    <div class="g-row"><span class="g-irish">Díseart</span><span class="g-pron">DEE-shert</span><span class="g-meaning">Hermitage / desert — the monastic goal; origin of place-names across the peninsula</span></div>
-    <div class="g-row"><span class="g-irish">Clochán</span><span class="g-pron">KLOH-kawn</span><span class="g-meaning">Beehive hut — the monk's cell, built dry-stone without mortar</span></div>
-    <div class="g-row"><span class="g-irish">Cosán na Naomh</span><span class="g-pron">KUH-sawn nuh NEEV</span><span class="g-meaning">The Saints' Road — 17.7 km from Ventry Strand to Mount Brandon</span></div>
+    <div class="g-row"><span class="g-irish">Diseart</span><span class="g-pron">DEE-shert</span><span class="g-meaning">Hermitage / desert — the monastic goal; origin of place-names across the peninsula</span></div>
+    <div class="g-row"><span class="g-irish">Clochan</span><span class="g-pron">KLOH-kawn</span><span class="g-meaning">Beehive hut — the monk's cell, built dry-stone without mortar</span></div>
+    <div class="g-row"><span class="g-irish">Cosan na Naomh</span><span class="g-pron">KUH-sawn nuh NEEV</span><span class="g-meaning">The Saints' Road — pilgrim route from Ventry Beach to Mount Brandon</span></div>
+    <div class="g-row"><span class="g-irish">Cathair Deargan</span><span class="g-pron">KAH-hir DYAR-gawn</span><span class="g-meaning">Caherdorgan — 8th-9th century cashel with five clochai on the Cosan</span></div>
+    <div class="g-row"><span class="g-irish">Cill Maoilcheadair</span><span class="g-pron">Kill MWEEL-khay-dir</span><span class="g-meaning">Kilmalkedar — the most important ecclesiastical site on the Dingle Peninsula</span></div>
     <div class="g-row"><span class="g-irish">Naomh</span><span class="g-pron">NEEV</span><span class="g-meaning">Saint / holy one — the community of grace walking ahead of you</span></div>
+    <div class="g-row"><span class="g-irish">Tost</span><span class="g-pron">TUST</span><span class="g-meaning">Silence — from O Faolain: ta tost toll laistigh, there is a hollow silence within</span></div>
     <div class="g-row"><span class="g-irish">Peregrinatio</span><span class="g-pron">per-eh-grin-AH-tio</span><span class="g-meaning">Exile for Christ — voluntary departure as spiritual practice</span></div>
-    <div class="g-row"><span class="g-irish">Súil</span><span class="g-pron">SOOL</span><span class="g-meaning">Eye — to look closely; the first act of the pilgrim</span></div>
-    <div class="g-row"><span class="g-irish">Domine</span><span class="g-pron">DOH-mee-neh</span><span class="g-meaning">Lord — inscribed on the Reask pillar stone; Latin in an Irish landscape</span></div>
-    <div class="g-row"><span class="g-irish">Fada</span><span class="g-pron">FAH-dah</span><span class="g-meaning">Long — the accent mark over a vowel; length matters in Irish</span></div>
   </div>
 </div>
 
-<!-- DAY NAV -->
-<nav class="day-nav" id="day-nav" aria-label="Day selection"></nav>
-
-<!-- WORKSPACE -->
+<nav class="day-nav" id="day-nav"></nav>
 <main id="workspace"></main>
 
-</div><!-- /shell -->
-
-<footer class="site-footer">
-  TRS 199 · Dr. Cyrus Paul Olsen III · Sacred Heart University · Dingle, Co. Kerry, Ireland
-</footer>
+</div>
+<footer class="site-footer">TRS 199 · Dr. Cyrus Paul Olsen III · Sacred Heart University · Dingle, Co. Kerry, Ireland</footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   DATA
-═══════════════════════════════════════════════════════════ */
-const DAYS = [
-  {
-    id: 0,
-    label: 'Day 1',
-    date: 'Mon May 25',
-    theme: 'Thin Places',
-    sites: 'Dingle harbor · parish landscape · orientation walk',
-    note: `<em>Amma Syncletica</em> was a 4th-century woman philosopher and teacher who lived as a hermit outside Alexandria with her blind sister, and around whom a community of women gathered. Twenty-eight of her sayings were preserved in the desert tradition alongside those of the Abbas. She opens these exercises because she spoke most directly about the sea.<br><br>"Those who put out to sea at first sailed with a favourable wind; then the sails spread, but later the wind becomes adverse. Then the ship is tossed by the waves and is no longer controlled by the rudder. But when in a little while there is calm, and the tempest dies down, then the ship sails on again. So it is with us." — Amma Syncletica, <em>Apophthegmata Patrum</em><br><br>The first day asks only one thing: that you arrive. Not just physically, but with some portion of your attention genuinely present. The Irish monks had a word for places where the membrane between the ordinary and the extraordinary grows thin. You do not need to believe anything about what lies on the other side. You only need to notice the membrane.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Celtic theology seminar · orientation walk',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'gold',
-            title: 'Threshold attention',
-            duration: '10 min · on the walk',
-            invitation: `Find a threshold — a doorway, a gap between two walls, a place where the harbor meets the land, or a shadow line where sun meets shade. Stop at it without crossing. You are at the in-between. Stand there long enough for the in-between to become a place rather than a pause.`,
-            prompt: `Write three observations before you move on — one of something seen, one of something heard, one of something felt in your body. Not interpretations. Not feelings about feelings. What is actually there.`,
-            deeper: {
-              tradition: `Celtic · Desert tradition · hesychia`,
-              text: `The early Irish monks called remote and exposed places <em>díseart</em> — desert. Not because they were dry but because they were stripped. The Egyptian desert fathers sought places where nothing could distract them from the question of what they actually were. The Dingle coastline is a different kind of stripping: wind and light and scale do what sand did in Egypt. Abba Arsenius, asked how a well-educated Roman could learn from illiterate monks, replied: "I have learnt the learning of Latin and Greek, yet I have not learnt even the alphabet of this peasant." The first exercise is always the hardest: arriving without your prior conclusions.`
-            }
-          },
-          {
-            icon: '◑', iconClass: 'teal',
-            title: 'Arrival examen',
-            duration: '15 min · end of morning session',
-            invitation: `Before lunch, sit somewhere you can see the harbor. Close your eyes and replay the morning from the beginning. Not to evaluate it — to retrieve it. Look for two moments: one where you felt something open, even slightly, and one where you felt yourself close or resist. Both are information.`,
-            prompt: `In your journal: what opened, and what closed? One sentence each. Then: what did the closing protect?`,
-            deeper: {
-              tradition: `Ignatian · First Week · examen`,
-              text: `Ignatius of Loyola called this kind of review <em>consolación</em> and <em>desolación</em> — movements toward life and away from it. He was not describing emotions. He was describing the direction of attention. Consolation moves outward and opens; desolation contracts and withdraws. Both are real. The examen does not ask you to feel differently — it asks you to notice what you actually felt, which is harder and more useful. For students who find "spirituality" distant, this is a practice of honest self-reporting. That is all it needs to be.`
-            }
-          },
-          {
-            icon: '✦', iconClass: 'coral',
-            title: 'Walking blessing — four directions',
-            duration: '5 min · on the walk, moving',
-            invitation: `As you move through the harbor and parish landscape, face each of the four directions briefly and speak — aloud or in your mind — a single sentence for each. Not a prayer if that word is not yours. An acknowledgment. North: what you release. East: what you open toward. South: what you carry from home. West: what you cannot yet see.`,
-            prompt: `Write the four sentences before the end of the morning. They do not need to be eloquent. They only need to be true.`,
-            deeper: {
-              tradition: `Celtic · caim (encircling prayer)`,
-              text: `The <em>caim</em> is a protective circle drawn around oneself in the old Irish tradition — sometimes literally, with the extended finger, turning clockwise. It named what was inside the circle as held and protected. Patrick's Breastplate is a formal version; the four-direction acknowledgment is a simpler form. For students skeptical of prayer: this is a spatial and attentive act before it is a religious one. You are locating yourself in a place, facing its four aspects, and speaking honestly into each direction. The monks did not invent this. They found it already present in human beings who paid attention.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Reflective observation · first journal entry',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'gold',
-            title: 'The day\'s open question',
-            duration: '10 min · journaling',
-            invitation: `Something happened today that you did not expect. It may have been small — a quality of light, a stranger's face, a moment of unexpected quiet on the harbor, a line from the seminar that snagged. Write it down without explaining it. Then write the question it left you with. Do not answer the question. Just write it as precisely as you can.`,
-            prompt: `The question you carry from Day 1. Keep it. It belongs to the whole course, not just today.`,
-            deeper: {
-              tradition: `Muir · Story and Fable`,
-              text: `Edwin Muir wrote that the life of every person is an endlessly repeated performance of the life of man — that beneath the <em>Story</em> (what happens) lies the <em>Fable</em> (the deeper pattern). He could not write the Fable directly; he could only notice the moments when it briefly surfaced through the Story. The open question is one of those moments. Something in the day pressed against the Fable. You may not know what the Fable is. That is not a problem. The question is the opening.<br><br>Syncletica knew this arc from her own life: <em>"In the beginning there is struggle and a lot of work for those who come near to God. But after that there is indescribable joy. It is just like building a fire: at first it is smoky and your eyes water, but later you get the desired result."</em> You are in the smoke. Stay.`
-            }
-          }
-        ]
-      }
-    ]
-  },
 
-  {
-    id: 1,
-    label: 'Day 2',
-    date: 'Tue May 26',
-    theme: 'Monastic Ireland',
-    sites: 'Gallarus Oratory · Reask Monastic Site · Fahan beehive huts',
-    note: `Today you will enter structures built by hand, without mortar, by people who believed that the quality of their attention while working was indistinguishable from prayer. They are still standing. The exercises ask you to let that fact register in your body before you think about what it means.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Field excursion · Gallarus · Reask · Fahan',
-        exercises: [
-          {
-            icon: '⬡', iconClass: 'gold',
-            title: 'Inside Gallarus — the enclosure exercise',
-            duration: '20 min · at the oratory',
-            invitation: `Before you read anything, before any interpretation is offered, go inside Gallarus alone if you can. Stoop to enter — the doorway requires it. Stand inside. Notice what happens to sound. Notice the quality of the dark, the weight of the walls, the single aperture of light. Stay there for at least five minutes without moving. The structure will do something to you. Let it.`,
-            prompt: `Immediately after you emerge, before you speak to anyone: write five sentences describing what happened inside. Not what you thought. What happened. Temperature, sound, light, breath, posture, any shift in how your body held itself.`,
-            deeper: {
-              tradition: `Heaney · Desert tradition · the cell`,
-              text: `Seamus Heaney's poem "In Gallarus Oratory" describes entering as "dropping, a reduced creature, to the heart of the globe" — the walls "yard thick" pressing out "the light of heaven." The poem is precise about the physical experience before it is about anything else. Heaney also notices what happens on exit: you are "steeped in air, dazzled." The enclosure does not diminish; it concentrates. The desert fathers called the cell the place where everything unnecessary falls away. Abba Moses said: "Stay in your cell and your cell will teach you everything." This is not advice about isolation. It is a claim about what happens when the field of attention is bounded and held still long enough.`,
-              saying: `"Just as fish die if they stay too long out of water, so monks who loiter outside their cells lose the intensity of inner peace." — Abba Anthony`
-            }
-          },
-          {
-            icon: '◧', iconClass: 'teal',
-            title: 'Reading the stones at Reask',
-            duration: '15 min · at the site',
-            invitation: `At Reask, choose a single stone in the enclosure wall or the carved pillar. Spend five minutes looking at only that stone. No photographs yet. Touch it if it is accessible. Notice the weight, the texture, the color variation, the lichen, the joins with adjacent stones. The monks who placed it were thinking about something while they worked. You do not know what. The stone preserves the labor without preserving the thought. That gap is the exercise.`,
-            prompt: `Write three things the stone cannot tell you. Then write one sentence from the stone's perspective. Give it something to say about duration.`,
-            deeper: {
-              tradition: `Celtic monasticism · labora et ora · Reask archaeology`,
-              text: `Thomas Fanning's excavations at Reask between 1972 and 1975 found fragments of 6th-century late Roman amphorae among the stone cells — evidence that this exposed, seemingly isolated monastery was a node in an active Mediterranean trade network. The monks chose isolation as a spiritual posture, not an accidental geography. They were connected and chose to be remote. The pillar stone inscribed <em>DNE</em> — <em>Domine</em>, Lord — is Latin in an Irish landscape, a meeting point of languages and continents in a single carved word. Stand near it and notice: isolation is not the absence of connection. It is a particular kind of choosing.`
-            }
-          },
-          {
-            icon: '◬', iconClass: 'coral',
-            title: 'The beehive huts at Fahan — sound as architecture',
-            duration: '20 min · at the clocháns',
-            invitation: `The beehive huts at Fahan are small enough that the world outside disappears when you enter. Before you go in: stand outside one of the clocháns and listen to the ambient sound — wind, sea, birds, distance. Now enter. Notice what the sound does. The corbelled stone changes acoustics the way a cupped hand changes a whisper. Stay inside long enough to hear the difference between the sound of the world outside and the sound of the world inside this particular enclosure. This is what the monks were building toward — not silence, but a different quality of hearing.`,
-            prompt: `Describe the sound inside in three words. Describe the sound outside in three words. Then: what does the difference between them feel like in your chest?`,
-            deeper: {
-              tradition: `Celtic · North Atlantic vernacular · Papa Westray parallel`,
-              text: `On the cliff-fringed islands of the North Atlantic — Orkney, the Hebrides, the Kerry coast — enclosure and exposure exist simultaneously. The cliff wall holds you; the open horizon releases you. The beehive hut makes this structural: inside, you are held. Outside, the Atlantic asserts its scale. George Mackay Brown knew this architecture by living in it. His poem "Beachcomber" moves through a week in which the sea keeps returning things — boot, timber, skull, oranges — each carrying the weight of the world that produced it. The monks at Fahan heard the same Atlantic. Their stone cells were not escapes from the sea but a way of listening to it with concentrated attention. The <em>clochán</em> is an ear pressed to the land.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Field journaling · sketching sacred space',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'teal',
-            title: 'Labor as attention — the sketch',
-            duration: '15 min · at any site',
-            invitation: `Make a field sketch of one structural feature you encountered today — a corbelled arch, a pillar stone, the curve of a wall, the join of two stones. You do not need to draw well. Drawing slowly is the point. The hand's movement follows the eye's movement follows the attention. Five minutes of slow looking followed by ten minutes of slow drawing will show you something about the structure that photographs cannot.`,
-            prompt: `What did you notice while drawing that you did not notice while simply looking? Write one sentence below the sketch.`,
-            deeper: {
-              tradition: `Ignatian · contemplation in action`,
-              text: `The Ignatian concept of <em>contemplatio in actione</em> holds that the mystic does not leave the world to find God — God is found precisely in the movement of careful action in the world. The hand that draws carefully is doing the same thing as the monk who laid stones carefully: it is making the act of attention visible. "Learning how to see" — taking what the Ignatian tradition calls "a long, loving look at the real" — is a skill, not an attitude. The sketch is its practice form.`
-            }
-          }
-        ]
-      }
-    ]
-  },
+const DAYS=[{id:0,label:"Day 1",date:"Mon May 25",theme:"Arrival",sites:"Dingle campus \u00b7 harbor \u00b7 welcome dinner",question:"What did this place ask of you before you asked anything of it?",qnote:"Hold this question lightly. You do not need to answer it today. Write it in the front of your journal and let it travel with you.",light:true,rhythm:[{band:"morn",label:"Morning \u2014 arrival",sub:"Orientation \u00b7 campus \u00b7 harbor",exercises:[{icon:"\u25ce",iconClass:"gold",title:"One honest paragraph",duration:"15 min \u00b7 before anything else",invitation:"Before any formal introduction to the course, before the schedule begins, write one paragraph about where you actually stand with the sacred \u2014 with pilgrimage, with poetry, with the idea that a landscape might mean something. Not where you think you should stand. Where you actually stand. You will not be judged for your answer. This paragraph is yours.",prompt:"Keep it. Return to it on Day 7 and see what has moved.",deeper:{tradition:"Gillespie \u00b7 Wild Irish Spirits \u00b7 spiritual autobiography as first instrument",text:"Dr. Charles Gillespie's course at SHU Dingle opens with a spiritual autobiography on the first day. This paragraph serves the same purpose: it establishes honesty as the course norm and gives you a baseline. You cannot know what has changed until you know where you started."}}]},{band:"aftn",label:"Afternoon \u2014 settling",sub:"Harbor walk \u00b7 optional exploration",exercises:[{icon:"\u25d1",iconClass:"teal",title:"First field observation",duration:"20 min \u00b7 on the harbor",invitation:"Walk the harbor without agenda. Not studying it, not photographing it purposefully, not explaining it to yourself. Just moving through it with your senses available. At some point, stop. Something will ask for your attention \u2014 a smell, a sound, a quality of light on the water, a stranger's face. Give it two minutes of your full attention. Then walk on.",prompt:"One sentence: what stopped you, and what did it cost you to stay with it for two full minutes?",deeper:{tradition:"Gallagher \u00b7 Moriarty \u00b7 the first act of attention",text:"John Moriarty, Kerry's own mystic-philosopher, described the task as learning to walk beautifully on the earth \u2014 a phrase that asks nothing theological, only attentiveness. The harbor walk is the first practice of that walking. Michael Paul Gallagher's governing wish was that students would enlarge their minds \u2014 not toward any conclusion, but toward a greater capacity for real encounter. Enlargement begins with attention."}}]}]},{id:1,label:"Day 2",date:"Tue May 26",theme:"Thin Places",sites:"Guided Dingle town tour \u00b7 Slea Head Drive religious sites",question:"What does this landscape hold that it cannot say?",qnote:"Carry this question through the whole day. The landscape has been trying to answer it for fourteen centuries.",rhythm:[{band:"morn",label:"Morning \u2014 town and coast",sub:"Guided tour \u00b7 Dingle \u00b7 Slea Head Drive",exercises:[{icon:"\u25ce",iconClass:"gold",title:"Threshold attention",duration:"10 min \u00b7 at any point on the tour",invitation:"At some point on the guided tour \u2014 at a chapel doorway, at a point on Slea Head where land meets Atlantic \u2014 stop at a threshold without crossing it. Stand in the in-between long enough for it to become a place rather than a pause. The Irish monks called remote exposed places diseart \u2014 desert \u2014 not because they were dry but because they were stripped. Notice what the stripping feels like here.",prompt:"Three observations before you move: one seen, one heard, one felt in your body. Not interpretations \u2014 what is actually there.",deeper:{tradition:"Celtic \u00b7 Desert tradition \u00b7 hesychia \u00b7 thin places",text:"The early Irish understood certain places as caol ait \u2014 thin places \u2014 where the membrane between the ordinary and whatever lies beyond grows unusually permeable. Standing on the Slea Head Drive looking toward the Blasket Islands, the scale of what you see exceeds the ordinary categories of meaning-making. That excess is the thin place. Hesychia \u2014 the stillness the desert tradition sought \u2014 is what you practice by stopping at the threshold."}},{icon:"\u25d1",iconClass:"teal",title:"Listening to the guide",duration:"Throughout the tour",invitation:"The guide today carries knowledge of this place that no amount of reading can replicate. Practice interior hospitality: arrive empty enough to actually receive what is offered, rather than confirming what you already thought. Before the tour begins, name to yourself one assumption you are bringing about what sacred landscape looks like. Hold it loosely.",prompt:"After the tour: what did the guide know about this place that you could not have found in a book?",deeper:{tradition:"Desert tradition \u00b7 xenia \u00b7 Gallagher \u00b7 hospitality",text:"The desert tradition taught that every visitor potentially brings the sacred. The guide is the host; you are the guest. Gallagher made imaginary opponents listen to each other with Irish wit and a glass of whiskey. The same quality of attention applies here: the guide may say something your prior framework would dismiss. Let it arrive before you judge it."}},{icon:"\u25ec",iconClass:"coral",title:"What the Atlantic asks",duration:"10 min \u00b7 first clear Atlantic viewpoint",invitation:"When you first see the open Atlantic on the Slea Head Drive \u2014 before interpretation, before photography \u2014 spend two minutes simply looking at the scale of it. The monks who built Gallarus called it duc in altum \u2014 put out into the deep. What does looking at that much open water do to your ordinary sense of proportion?",prompt:"One sentence \u2014 not about the view, but about what looking at it did to your body.",deeper:{tradition:"Ignatian \u00b7 duc in altum \u00b7 Brendan \u00b7 the sea as testing ground",text:"Brendan's voyage was circular \u2014 he was told to return home before he could die. Sandra Jones identifies the Navigatio's geometry as cyclical: the sea is a structured testing ground, not a void. What you are looking at is not emptiness. It is structure without visible form."}}]},{band:"aftn",label:"Afternoon \u2014 interior ordering",sub:"Reflection \u00b7 journaling",exercises:[{icon:"\u25c8",iconClass:"purple",title:"The day's open question",duration:"15 min \u00b7 journaling",invitation:"Return to today's governing question: What does this landscape hold that it cannot say? Write around it for ten minutes \u2014 not answering it, circling it. What did the day give you that presses on the question?",prompt:"The question, now held with one specific thing the day gave it. Keep this entry. It will look different after Day 3.",deeper:{tradition:"Muir \u00b7 Story and Fable",text:"Edwin Muir wrote that beneath every Story \u2014 what happens \u2014 lies the Fable, the deeper pattern the Story keeps performing without knowing it. The landscape's Fable is what it holds that it cannot say. Today gave you one or two moments when the Fable briefly surfaced. The journaling catches what they left behind."}}]}]},{id:2,label:"Day 3",date:"Wed May 27",theme:"Memory & Exile",sites:"Slea Head circuit \u00b7 Blasket Islands viewpoint \u00b7 Peig Sayers country",question:"Where has it gone?",qnote:"Hwær cwom mearg? Hwær cwom mago? \u2014 Where has the horse gone? Where the rider? \u2014 The Wanderer, c.960. The Blasket field walls are your answer.",rhythm:[{band:"morn",label:"Morning \u2014 Slea Head circuit",sub:"Atlantic listening \u00b7 Blaskets viewpoint",exercises:[{icon:"\u25cc",iconClass:"teal",title:"Atlantic listening \u2014 ten minutes without agenda",duration:"10 min \u00b7 facing the water",invitation:"Find a place facing the Atlantic with the Blasket Islands in view. Set a timer for ten minutes. Do not write. Do not photograph. Do not explain the landscape to yourself. Let the scale of what you are looking at be what it is. After ten minutes: what one word remains? You did not choose it \u2014 it arrived. Write it down.",prompt:"The word. Do not qualify it. Keep it for the afternoon.",deeper:{tradition:"Desert tradition \u00b7 kenosis \u00b7 self-emptying",text:"Kenosis is the deliberate releasing of the interpreting self \u2014 not passivity but a specific action: stopping the continuous production of meaning long enough for something to arrive that you did not manufacture. What the Atlantic does to your interpretive frame, if you let it, is the exercise."}},{icon:"\u25d1",iconClass:"coral",title:"Entering Peig's world",duration:"10 min \u00b7 at the Blasket viewpoint",invitation:"Looking toward the Great Blasket Island: Peig Sayers was born there in 1873. The island was evacuated in 1953. The field walls and house foundations are still visible from here. Place yourself, imaginatively, inside one of those houses. Not sympathetically \u2014 precisely. What is the floor made of? What does the Atlantic sound like through that particular stone?",prompt:"One sentence that Peig might have spoken, in English, looking out at the water. Not what you think she felt \u2014 what she saw.",deeper:{tradition:"Ignatian \u00b7 compositio loci \u00b7 O Faolain \u00b7 tost toll",text:"Simon O Faolain's poem Back West \u2014 written about this landscape \u2014 ends: ta tost toll laistigh / agus tost amugh, there is a hollow silence within / and silence outside. The chrome combination locks on the gateposts of the empty houses: the riddle could be untied, the spell broken, Had we the correct words. The Blasket houses are those empty gateposts. The words are gone with the people. O Faolain will read this poem when you meet him."}},{icon:"\u25ec",iconClass:"gold",title:"What landscape holds \u2014 ubi sunt",duration:"10 min \u00b7 walking",invitation:"The landscape was farmed, fished, grieved, and celebrated by people whose descendants are now in Springfield and Melbourne and Toronto. Emigration from this peninsula was not metaphorical exile \u2014 it was the physical departure of most of a population within living memory. Notice whether the landscape looks different knowing this.",prompt:"One sentence: what does this landscape hold that it cannot say? Write it before you lose it.",deeper:{tradition:"Old English \u00b7 ubi sunt \u00b7 The Wanderer \u00b7 Mackay Brown",text:"The Old English poem The Wanderer names this: Hwær cwom mearg? Hwær cwom mago? \u2014 Where has the horse gone? Where the rider? The Blasket field walls are your ubi sunt. Mackay Brown's fishermen held the same history in Orkney: Tuesday's timber next winter will be a chair, a coffin, a bed."}}]},{band:"aftn",label:"Afternoon \u2014 reflection circle",sub:"Memory \u00b7 loss \u00b7 Atlantic imagination",exercises:[{icon:"\u25c8",iconClass:"purple",title:"The word that arrived",duration:"15 min \u00b7 journaling",invitation:"Return to the single word from the Atlantic listening exercise. Write around it \u2014 not a definition, but a context. Where in your own life does this word live? You are not required to share this. You are required to be honest about it.",prompt:"The word. Three sentences around it. Then: what does this word know about you that you have not yet written down?",deeper:{tradition:"Muir \u00b7 the mind beneath the mind",text:"Muir wrote: I think there must be a mind within our minds which cannot rest until it has worked out the unresolved questions of our past. The word that arrived during the Atlantic exercise came from that mind. His Achilles-Hector poem cleared a shame he had carried for thirty years \u2014 it arrived almost complete. The word is the beginning of something you do not yet know."}}]},{band:"evng",label:"Evening \u2014 film",sub:"Song of the Sea \u00b7 Cartoon Saloon (2014)",filmNote:"Tomm Moore's animated film engages the selkie mythology of the Atlantic coast \u2014 beings who live between worlds, pulled between sea and land. The selkie's longing is the ubi sunt in animated form. Count this as a lecture hour.",exercises:[]}]},{id:3,label:"Day 4",date:"Thu May 28",theme:"The Cosan",sites:"Cosan na Naomh stops 5\u20139 \u00b7 Gallarus \u00b7 Caherdorgan \u00b7 Kilmalkedar",question:"What does the body know that the mind has not yet caught up with?",qnote:"Today you walk the central section of the Cosan na Naomh \u2014 from Gallarus (stop 5) through Caherdorgan (stop 7) to Kilmalkedar (stop 9). Approximately 4\u20135 km. The walking is the exercise.",rhythm:[{band:"morn",label:"Morning \u2014 the Cosan",sub:"Gallarus \u00b7 Caherdorgan \u00b7 Kilmalkedar \u00b7 walking",exercises:[{icon:"\u2b21",iconClass:"gold",title:"Inside Gallarus \u2014 the enclosure exercise",duration:"15 min \u00b7 at the oratory",invitation:"Read Heaney's In Gallarus Oratory before you enter \u2014 it is in the poetry portal. Then go inside alone if you can. Stoop to enter. Stand inside. Notice what happens to sound. Notice the quality of the dark, the weight of the walls, the single aperture of light. Stay for at least five minutes without moving. The structure will do something to you. Let it. When you emerge, read the poem again. Which reading is truer?",prompt:"Immediately after you emerge: five sentences describing what happened inside. Not what you thought \u2014 what happened.",deeper:{tradition:"Heaney \u00b7 Desert tradition \u00b7 Abba Moses on the cell",text:"Heaney's poem describes entering as dropping, a reduced creature, to the heart of the globe, the walls yard thick pressing out the light of heaven. On exit: you are steeped in air, dazzled. The enclosure does not diminish; it concentrates. Abba Moses: Stay in your cell and your cell will teach you everything.",saying:"Just as fish die if they stay too long out of water, so monks who loiter outside their cells lose the intensity of inner peace. \u2014 Abba Anthony"}},{icon:"\u25a7",iconClass:"teal",title:"Caherdorgan \u2014 five clochai",duration:"15 min \u00b7 at the cashel",invitation:"Enter over the stile. Stand inside the cashel wall. You are inside a doubled enclosure: the cashel holds the clochai, the clochai held the monks. Choose one beehive hut and enter it. The blocked souterrain beneath one of the rooms runs deeper still. Something was stored there, or someone hid there, or something sacred was kept there. You do not know which. Sit with not knowing.",prompt:"What does it mean that this structure is still standing? Not architecturally \u2014 what does it mean to you, in your body, right now?",deeper:{tradition:"Celtic monasticism \u00b7 Three Martyrdoms \u00b7 the desert in stone",text:"The Irish monks understood three forms of martyrdom: red (death), green (ascetic renunciation), and white (exile and pilgrimage). The monks of Caherdorgan chose green martyrdom \u2014 a voluntary reduction of comfort in order to concentrate attention on what they believed was most real. The cashel wall held the community in \u2014 a bounded field of attention within which the noise of ordinary life could settle."}},{icon:"\u25ec",iconClass:"coral",title:"Kilmalkedar \u2014 the alphabet stone",duration:"15 min \u00b7 at the site",invitation:"Inside the 12th-century Romanesque church, near the chancel arch, is a cross-decorated stone with the old Irish alphabet carved on one side \u2014 dating from the 6th century. Find it. Run your fingers along the letters if accessible. Someone carved this alphabet into stone 1,400 years ago. The act of carving an alphabet into stone is the act of insisting that language will outlast the body that speaks it. Stand with that insistence for two minutes.",prompt:"What did you come here carrying that you can leave at the alphabet stone? Write it. Speak it aloud if you are willing.",deeper:{tradition:"Celtic literacy \u00b7 peregrinatio \u00b7 Moriarty \u00b7 walking beautifully",text:"John Moriarty \u2014 born in North Kerry, not far from here \u2014 described the task of human life as learning to walk beautifully on the earth. The monks of Kilmalkedar were doing exactly that: carving alphabets, observing the canonical hours, keeping the manuscript tradition alive. The Cosan ends here. You walked the same ground they walked."}}]},{band:"aftn",label:"Afternoon \u2014 integration",sub:"Journaling \u00b7 paper workshop",exercises:[{icon:"\u25c8",iconClass:"purple",title:"What the walk gave and took",duration:"20 min \u00b7 journaling",invitation:"The walk asked something of your body. Sit with that before you write. Then: what did the walk give you that you did not have this morning? And what did it take \u2014 what thought or preoccupation was still present at the start that is quieter now?",prompt:"Given: one thing. Taken: one thing. Where do you feel the difference?",deeper:{tradition:"Ignatian \u00b7 consolacion sin causa \u00b7 the body as instrument",text:"Ignatius wrote about consolacion sin causa \u2014 grace that arrives without a preceding thought or effort. The walk produces versions of this: a quality of light at Kilmalkedar, a moment of physical relief that carries something more. Muir's Achilles-Hector poem arrived almost complete, at one sitting \u2014 the body of work surfacing while the conscious mind was occupied with movement."}}]},{band:"evng",label:"Evening \u2014 film",sub:"The Secret of Kells \u00b7 Cartoon Saloon (2009)",filmNote:"Moore and Twomey's film dramatizes the creation of the Book of Kells inside a monastery under Viking siege. The film's monastery is what you walked through today at Gallarus and Kilmalkedar \u2014 enclosure, illuminated manuscript, Celtic interlace as prayer. Count this as a lecture hour.",exercises:[]}]},{id:4,label:"Day 5",date:"Fri May 29",theme:"Poetry",sites:"Seminar \u00b7 Simon O Faolain session \u00b7 creative workshop \u00b7 open mic",question:"What does this poem know about this place that you did not?",qnote:"A day spent entirely with language \u2014 reading it, hearing it from the person who made it, and making some of your own.",oFaolainPoem:true,rhythm:[{band:"morn",label:"Morning \u2014 seminar",sub:"Heaney \u00b7 Boland \u00b7 O Tuama \u00b7 Ni Dhomhnaill \u00b7 O Faolain",exercises:[{icon:"\u25ce",iconClass:"gold",title:"Reading aloud as slowing down",duration:"10 min",invitation:"Choose one poem from the packet. Read it aloud three times. First for sound \u2014 track only the movement of your mouth and breath. Second for syntax \u2014 notice where sentences break unexpectedly. Third for the one image that strikes you differently. You are not analyzing. You are attending.",prompt:"Which image struck you on the third reading that you missed on the first? What was it doing there?",deeper:{tradition:"Desert tradition \u00b7 repetitio \u00b7 lectio",text:"The desert monks chanted the Psalms not to understand them but to be inhabited by them. Repetition was the practice \u2014 letting the text move from the interpreting mind into the body. Reading aloud slowly is the way to feel the difference between decoration and precision."}},{icon:"\u25d1",iconClass:"teal",title:"Consolation and desolation in the poem",duration:"10 min",invitation:"With the same poem: read it once more and mark \u2014 in pencil, in the margin \u2014 where you feel a small movement toward it and where you feel a small movement away. Not judgment. Where does your attention open, and where does it close?",prompt:"One line that opened your attention. One line that closed it. What does the closing line protect you from feeling?",deeper:{tradition:"Ignatian \u00b7 discernment \u00b7 Gallagher",text:"Gallagher wrote: Faith itself is a God-given way of imagining existence \u2014 not a cold truth, easily captured in concepts. And my conviction is that imaginative writers, like biblical prophets, can deepen our angle of seeing. He used poems as instruments of discernment \u2014 ways of noticing what is actually moving in us when we encounter beauty or difficulty."}}]},{band:"aftn",label:"Afternoon \u2014 Simon O Faolain \u00b7 workshop",sub:"Facilitated session \u00b7 bilingual poetry \u00b7 craft",exercises:[{icon:"\u25c8",iconClass:"coral",title:"Listening to O Faolain \u2014 two languages",duration:"During and after the session",invitation:"Simon O Faolain writes in Irish and translates his own work into English. During his session, hold his bilingual poems as two separate objects rather than one poem and its translation. When he reads Back West / Thiar \u2014 pay attention to what the Irish sounds like before you understand it. Notice the word tost \u2014 silence. Notice where the English closes what the Irish keeps open.",prompt:"One thing the English version of Back West loses from the Irish. One thing it gains. Ask him if you are willing.",deeper:{tradition:"Ni Dhomhnaill \u00b7 O Faolain \u00b7 the Irish language as threshold",text:"O Faolain writes from this specific landscape. His Back West ends with silence that has slipped its leash \u2014 tost toll laistigh, hollow silence within. The chrome combination locks on the empty gateposts: the riddle cannot be untied because the words and the combination are gone with the people. He is one of the people who still has the words. Ask him what that costs."}}]},{band:"evng",label:"Evening \u2014 open mic",sub:"Peer feedback \u00b7 shared work",exercises:[{icon:"\u2726",iconClass:"purple",title:"Listening at the open mic",duration:"Throughout the evening",invitation:"When others read tonight, track the moment in each piece where your attention sharpens \u2014 where something arrives that you were not expecting. Do not evaluate the quality. Notice the moment of unexpected arrival. That is where the writer found something real.",prompt:"After the evening: one line or image from someone else's work that you wish you had written. Their name, the line, and one sentence on why.",deeper:{tradition:"Gallagher \u00b7 reconciliatio oppositorum \u00b7 communal listening",text:"Gallagher's method begins with this quality of attention: making unlike things sit together until something genuine passes between them. At the open mic you will hear work at very different levels of development. The exercise is to listen to each as if it contains something you need."}}]}]},{id:5,label:"Day 6",date:"Mon Jun 1",theme:"Living Traditions",sites:"Billy Mag Fhloinn \u00b7 Niamh Varian-Barry \u00b7 Kevin Power \u00b7 guest sessions",question:"What does a living tradition ask of the person who encounters it?",qnote:"Today you encounter the living tradition \u2014 not stones and texts but people whose lives are continuous with everything you have been walking through. The primary exercise is listening.",rhythm:[{band:"morn",label:"Morning \u2014 guest sessions",sub:"Billy Mag Fhloinn \u00b7 Celtic religious traditions",exercises:[{icon:"\u25ce",iconClass:"gold",title:"Preparing interior hospitality",duration:"10 min \u00b7 before the first session",invitation:"Before you meet the guest speakers, name \u2014 honestly \u2014 what you expect to hear. What assumptions are you bringing about what Celtic religious tradition looks like? Write three sentences: what you expect to be confirmed, what you expect to be surprised by, and what you are hoping for.",prompt:"Your three sentences. Keep them for the end of the day.",deeper:{tradition:"Desert tradition \u00b7 xenia \u00b7 Gallagher \u00b7 hospitality",text:"Prof. Billy Mag Fhloinn teaches Celtic religious traditions here in Dingle \u2014 he carries local scholarly authority on exactly what this course has been built around. The exercise in interior hospitality is the preparation to actually receive what he offers, rather than confirming what you already thought."}},{icon:"\u25d1",iconClass:"teal",title:"What the tradition holds",duration:"During and after the session",invitation:"During the session: attend to what the speaker carries that you cannot carry for yourself \u2014 not just knowledge, but a relationship to this place, this language, this tradition. Something belongs to a life lived in continuity with this land rather than passing through it. Notice the difference between what you can understand and what you can only observe.",prompt:"What can you observe but not possess? One sentence. Then: what can you carry from today that is genuinely yours?",deeper:{tradition:"Moriarty \u00b7 walking beautifully \u00b7 local knowledge",text:"John Moriarty spent years in Connemara developing what he called a cosmological relationship to the Irish landscape \u2014 not touristic, not scholarly, but rooted and responsive. Walking beautifully on the earth names a quality of presence that comes from duration and attention, not from reading. Today's speakers have that quality. The exercise is to notice it, not to acquire it instantly."}}]},{band:"aftn",label:"Afternoon \u2014 music and philosophy",sub:"Niamh Varian-Barry \u00b7 Kevin Power \u00b7 Self, Mind and Nature",exercises:[{icon:"\u25ec",iconClass:"coral",title:"Irish music as second scripture",duration:"During the music session",invitation:"During the Irish music session: resist the temptation to analyze. Let the music enter through the body, not through the interpreting mind. Listen for the moment when the music stops being something you are listening to and becomes something you are inside.",prompt:"After: one emotion that does not yet have a name. Write around it \u2014 three sentences that approach it from different angles.",deeper:{tradition:"Celtic \u00b7 musica instrumentalis \u00b7 Boethian daily rhythm",text:"Niamh Varian-Barry carries the Irish music tradition in living form. Sean-nos (old-style) singing treats landscape as a musical score already written. The Boethian framework names the evening's communal sound as musica instrumentalis \u2014 the third layer of a daily rhythm that aligns the human with the rhythms of the larger world."}}]},{band:"evng",label:"Evening \u2014 film",sub:"Wolfwalkers \u00b7 Cartoon Saloon (2020)",filmNote:"This film's animism and the tension between the wild and the institutional maps directly onto the course's living traditions encounter. Watch it as preparation for tomorrow's Minard ceremony and the question of what you do with something sacred that is not yours. Count this as a lecture hour.",exercises:[]}]},{id:6,label:"Day 7",date:"Tue Jun 2",theme:"Minard",sites:"Minard Castle \u00b7 St. John's Well \u00b7 Blessing of the Hands with Fr. Kiely",question:"What do you do with something sacred that is not yours?",qnote:"Today you witness a living folk Catholic ceremony at a site layered with pre-Christian and Christian practice. You are a respectful observer. The question is not whether you share the faith \u2014 it is what you do with the encounter.",winnowingPoem:true,rhythm:[{band:"morn",label:"Morning \u2014 Minard Castle \u00b7 St. John's Well",sub:"Blessing of the Hands \u00b7 Fr. Kiely",exercises:[{icon:"\u25ce",iconClass:"gold",title:"Before the ceremony \u2014 arriving at the site",duration:"10 min \u00b7 on arrival at Minard",invitation:"Minard Castle is a 15th-century tower house destroyed by Cromwellian forces in 1650 \u2014 an ubi sunt site in its own right. St. John's Well beside it has been a site of devotional practice for centuries. Before the ceremony begins, walk the site slowly. Notice the layers: the castle ruin, the well, the Atlantic behind. Something has been happening here for a very long time, across several different religious frameworks. You do not need to belong to any of them to notice the quality of attention the site asks for.",prompt:"What does this site ask of you before the ceremony begins? One sentence.",deeper:{tradition:"Celtic \u00b7 holy wells \u00b7 pre-Christian and Christian layers",text:"Holy wells across Ireland are sites where pre-Christian and Christian practice have coexisted for centuries. The practice of visiting a well for healing, making rounds, leaving offerings, is documented from at least the early medieval period. The site holds all layers simultaneously. Your task is to observe that holding without collapsing it into a single framework."}},{icon:"\u25d1",iconClass:"teal",title:"The ceremony \u2014 witnessing",duration:"During the Blessing of the Hands",invitation:"You are an observer today, not a participant \u2014 unless you choose otherwise. The distinction matters and deserves respect. During the ceremony: notice what Fr. Kiely's hands do. Notice what the people around you do with their attention. Notice what happens to the quality of sound. You do not need to believe what is being enacted in order to recognize that something is being enacted seriously. Seriousness is what you owe it.",prompt:"One thing you witnessed that you did not expect. One thing you recognized from the course's earlier encounters \u2014 a gesture, a posture, a quality of attention \u2014 that you have seen before in a different form.",deeper:{tradition:"Ignatian \u00b7 application of the senses \u00b7 Gillespie \u00b7 ritual analysis",text:"Dr. Gillespie's course assigns a ritual analysis of the Catholic Mass in Irish as a core assignment \u2014 attending to what the ritual does, not only what it means. The Blessing of the Hands is a bodily ritual: touch, specific words, water from the well, the priest's hands, the recipient's hands. All of this is legible to careful attention, regardless of belief."}},{icon:"\u25ec",iconClass:"coral",title:"After the ceremony \u2014 what you carry",duration:"10 min \u00b7 before leaving",invitation:"Before you leave Minard: stand at the well for two minutes. You have just witnessed something that has been happening at this site in some form for centuries. You are passing through. The ceremony will continue after you have left and been forgotten. Notice what it feels like to be a temporary presence at a site of long continuity.",prompt:"What do you do with something sacred that is not yours? Answer the question now, having witnessed the ceremony.",deeper:{tradition:"Gallagher \u00b7 Moriarty \u00b7 the sacred and the secular traveler",text:"Gallagher's great work was bringing people who did not share a tradition into genuine encounter with it \u2014 not by arguing them into assent, but by creating conditions in which the tradition could speak for itself. Moriarty called this walking beautifully on the earth \u2014 a posture of receptivity that does not require belief, only attention and respect. You do not need to leave Minard a believer. You need to leave having been present for what happened here."}}]},{band:"aftn",label:"Afternoon \u2014 integration",sub:"Paper workshop \u00b7 Lightning Talk rehearsals",exercises:[{icon:"\u25c8",iconClass:"purple",title:"Day 1 and Day 7",duration:"15 min \u00b7 journaling",invitation:"Return to the paragraph you wrote on Day 1 \u2014 where you actually stood with the sacred before the course began. Read it. Then write one paragraph now: where do you actually stand? Not where you think you should stand after a week in Dingle. Where you actually stand, having walked the Cosan and witnessed the Blessing and heard O Faolain read in Irish. The movement between the two paragraphs is the course.",prompt:"Day 1 paragraph. Day 7 paragraph. One sentence connecting them \u2014 what moved, and how?",deeper:{tradition:"Muir \u00b7 Story and Fable \u00b7 Gallagher \u00b7 enlarging the mind",text:"Gallagher drew from Newman the wish that everyone would enlarge their mind \u2014 not toward any particular conclusion, but toward a greater capacity for real encounter. The question is not whether you believe differently. The question is whether you are capable of a larger encounter than you were on May 25."}}]}]}];
 
-  {
-    id: 2,
-    label: 'Day 3',
-    date: 'Wed May 27',
-    theme: 'Landscape & Memory',
-    sites: 'Slea Head circuit · Blasket Islands viewpoint · Peig Sayers country',
-    note: `The view from Slea Head toward the Blasket Islands is one of the most disorienting views in Europe. The islands are close enough to see houses and field walls; they have been empty since 1953. The exercise today is about what landscape holds after the people have gone.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Slea Head circuit · Atlantic listening',
-        exercises: [
-          {
-            icon: '◌', iconClass: 'teal',
-            title: 'Atlantic listening — ten minutes without agenda',
-            duration: '10 min · facing the water',
-            invitation: `Find a place on the Slea Head circuit where you can sit facing the Atlantic with the Blasket Islands in view. Set a timer for ten minutes. Do not write. Do not photograph. Do not explain the landscape to yourself or to anyone else. The exercise is to let the scale of what you are looking at be what it is, without immediately converting it into meaning. The Atlantic does not need your interpretation. Notice what you feel when you stop trying to provide one.`,
-            prompt: `After the ten minutes: what one word remains? You did not choose it — it arrived. Write it down. Do not qualify it yet.`,
-            deeper: {
-              tradition: `Desert tradition · kenosis · self-emptying`,
-              text: `The desert tradition called this practice <em>kenosis</em> — self-emptying, the deliberate releasing of the full machinery of the interpreting self. It is not passivity. It is a specific and difficult action: the action of stopping the continuous production of meaning long enough for something to arrive that you did not manufacture. Muir described the moment in the Glasgow tramcar when his interpretive frame briefly failed — he saw the other passengers as animals — and the terror of it. <em>Kenosis</em> is that same failure of the frame, sought deliberately and held without panic. What the Atlantic does to that frame, if you let it, is the exercise.`
-            }
-          },
-          {
-            icon: '◑', iconClass: 'coral',
-            title: 'Entering Peig\'s world — imaginative placement',
-            duration: '15 min · at the Blasket viewpoint',
-            invitation: `Looking toward the Great Blasket Island: Peig Sayers was born there in 1873 and spent much of her life in a stone cottage on its slopes, speaking Irish, telling stories, watching this same water. The island was evacuated in 1953 — twenty-two people remained; they asked to leave. The field walls and house foundations are still visible from here. Place yourself, imaginatively, inside one of those houses. Not sympathetically — precisely. What is the floor made of? What is the quality of light through the single window? What does the Atlantic sound like from inside that particular stone?`,
-            prompt: `Write the interior of one sentence that Peig might have spoken, in English, looking out at the water. Not what you think she felt. What she saw.`,
-            deeper: {
-              tradition: `Ignatian · compositio loci · application of the senses`,
-              text: `Ignatius taught his retreatants to enter biblical scenes not conceptually but sensorially — to compose the place with the imagination and then move through it with each sense in turn. This is not fantasy. It is disciplined attention applied to a specific historical location. The gap between your imagination of the interior and what the interior actually was is itself data — it tells you what you brought to the scene, what assumptions your imagining is made of. Peig Sayers dictated her autobiography in Irish to her son; it was one of the last great texts of the oral tradition. The language she spoke and the language you are thinking in are the subject of Ní Dhomhnaill's "An Crann." The gap between them is the poem.`
-            }
-          },
-          {
-            icon: '✦', iconClass: 'gold',
-            title: 'What landscape holds',
-            duration: '10 min · walking',
-            invitation: `As you continue the circuit: the landscape you are walking through was farmed, fished, walked, grieved, and celebrated by people whose descendants are now in Springfield, Massachusetts and Melbourne and Toronto. Emigration from this peninsula was not metaphorical exile — it was the physical departure of most of a population within living memory. Notice whether the landscape looks different to you knowing this. Notice what it looks like if you try to see it without knowing this.`,
-            prompt: `One sentence: what does this landscape hold that it cannot say? Write it before you lose it.`,
-            deeper: {
-              tradition: `Mackay Brown · North Atlantic exile · Muir's Fable`,
-              text: `George Mackay Brown's Orkney held the same history: depopulation, emigration, the stone ruins of communities that once filled the islands. His poem "Beachcomber" enacts this weekly — the sea returns objects from the world that built and lost them. Tuesday's timber "next winter will be a chair, a coffin, a bed." The object carries the civilization that produced it. Muir wrote that the life of every man is "an endlessly repeated performance of the life of man" — that beneath the particular story of this island, this evacuation, these field walls, lies the Fable of every departure. You are standing in a place where the Fable is close to the surface.<br><br>The Old English poem <em>The Wanderer</em> — preserved in the Exeter Book, written within a century of the monks at Reask — names this experience in three words: <em>ubi sunt</em>, where are they? Its poet asks: <em>Hwær cwom mearg? Hwær cwom mago? Hwær cwom maþþumgyfa?</em> — "Where has the horse gone? Where the rider? Where the giver of treasure?" The Blasket field walls are your answer. The evacuation of 1953 is your <em>ubi sunt</em>. The question does not require an answer. It requires only that you feel the weight of its asking.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Reflection circle · memory and loss',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'purple',
-            title: 'The word that arrived',
-            duration: '10 min · journaling',
-            invitation: `Return to the single word you wrote after the Atlantic listening exercise. It has been in your pocket all day. Now write around it — not a definition, but a context. Where in your own life does this word live? You are not required to share this. You are required to be honest about it.`,
-            prompt: `The word. Three sentences around it. Then: what does this word know about you that you have not yet written down?`,
-            deeper: {
-              tradition: `Muir · mind beneath the mind`,
-              text: `Muir wrote: "I think there must be a mind within our minds which cannot rest until it has worked out the unresolved questions of our past." The word that arrived unbidden during the Atlantic exercise came from that mind — not the interpreting, categorizing mind, but the one that works while you are looking at the horizon. His Achilles-Hector poem cleared a shame he had carried for thirty years. He did not plan to write it. "I wrote the poem down, almost complete, at one sitting." The word is the beginning of something. You do not need to know what yet.`
-            }
-          }
-        ]
-      }
-    ]
-  },
+let deeperOpen={};
 
-  {
-    id: 3,
-    label: 'Day 4',
-    date: 'Thu May 28',
-    theme: 'Poetry of the Peninsula',
-    sites: 'Seminar · Creative workshop · Open mic',
-    note: `A day spent with language — reading it, listening to it, making it. The exercises assume that poetry is not decoration but a form of knowing. If that claim seems large to you, hold it lightly today and see what the day does with it.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Heaney · Boland · Ó Tuama · Ní Dhomhnaill · seminar',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'gold',
-            title: 'Reading aloud as slowing down',
-            duration: '10 min · seminar or solo',
-            invitation: `Choose one poem or short passage from today's reading packet. Read it aloud — slowly — three times. The first time: for the sound. Do not try to understand it; track only the movement of your mouth and breath. The second time: for the syntax — notice where sentences break, where they continue unexpectedly. The third time: for the one image that strikes you differently from the others. You are not analyzing. You are attending.`,
-            prompt: `Which image struck you on the third reading that you did not notice on the first? Write it down. Then write what it was doing there — not what it means, what it was doing.`,
-            deeper: {
-              tradition: `Desert tradition · repetitio · Mackay Brown vernacular`,
-              text: `The desert monks chanted the Psalms not to understand them but to be inhabited by them. The repetition was the practice — letting the text move from the level of the interpreting mind to the level of the body. Mackay Brown's poems work similarly: plain language used with such precision that the plainness becomes a form of depth. "Tuesday a spar of timber worth thirty bob. / Next winter / It will be a chair, a coffin, a bed." Three objects, one life cycle, eleven words. The poem is not decorated. It is exact. Reading aloud slowly is the way to feel the difference between decoration and precision.`
-            }
-          },
-          {
-            icon: '◑', iconClass: 'teal',
-            title: 'Consolation and desolation in the poem',
-            duration: '15 min · workshop',
-            invitation: `With the poem you have been reading: read it through once more and mark — in pencil, in the margin — where you feel a small movement toward it and where you feel a small movement away. Not judgment. Not whether the poem is good. Where does your attention open, and where does it close? Then look at what you marked. The pattern is your response, which is as interesting as the poem.`,
-            prompt: `One line that opened your attention. One line that closed it. What does the closing line protect you from feeling?`,
-            deeper: {
-              tradition: `Ignatian · discernment of spirits · Gallagher`,
-              text: `Ignatius taught that consolation and desolation are movements of the spirit — not emotions, but directions of energy. Gallagher extended this to the reading of literature: "Faith itself is a God-given way of imagining existence — not a cold truth, easily captured in concepts. And my conviction is that imaginative writers, like biblical prophets, can deepen our angle of seeing." Gallagher never quoted poets for aestheticism. He used them as instruments of discernment — ways of noticing what is actually moving in us when we encounter beauty, difficulty, or truth. The poem is the occasion. Your response is the data.`
-            }
-          },
-          {
-            icon: '✦', iconClass: 'coral',
-            title: 'Soundscape writing — five lines',
-            duration: '15 min · workshop',
-            invitation: `Go outside, or open a window if you cannot. Listen for two minutes. Then write five lines in which every image is also a sound. Not "the sea was loud" — that is description of sound. "The sea dragged its shingle apron back across the stones" — that is sound as image. After you have five lines, remove any word that names a sound directly. If the sound survives its name being removed, the image is working.`,
-            prompt: `Your five lines. Then: which one surprised you?`,
-            deeper: {
-              tradition: `Celtic · sean-nós · landscape as musical score`,
-              text: `The <em>sean-nós</em> (old-style) singing tradition treats landscape as a musical score already written — the singer's task is to transcribe what the land already contains. This is not metaphor in the <em>sean-nós</em> tradition; it is a description of how the music actually came to exist. The songs emerged from specific places, specific Atlantic exposures, specific qualities of wind and stone. Writing five lines in which every image is also a sound is a small version of this practice: learning to hear what the landscape is already saying, before you decide what you want it to mean.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'evng',
-        label: 'Evening — communal sound',
-        sub: 'Open mic · peer feedback',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'purple',
-            title: 'Listening at the open mic',
-            duration: 'Throughout the evening',
-            invitation: `When others read or perform tonight, practice a specific kind of listening: track the moment in each piece where your attention sharpens — where something arrives that you were not expecting. Do not evaluate the quality of the work. Notice the moment of unexpected arrival. That moment is where the writer found something real, regardless of whether the rest of the piece is finished or polished.`,
-            prompt: `After the evening: one line or image from someone else's work that you wish you had written. Write it down with their name, and then write why.`,
-            deeper: {
-              tradition: `Gallagher · reconciliatio oppositorum · hospitality`,
-              text: `Gallagher's method — making apparently unlike things sit down together and listen to each other — begins with exactly this kind of attention. His imaginary dialogue between Thérèse de Lisieux and Nietzsche works because he listened to both with equal seriousness. At the open mic you will hear work at very different levels of development. The exercise is to listen to each as if it contains something you need. Sometimes it will. Steeves describes Gallagher as a host who "introduces you to people you never would have dreamed of talking to." Tonight you are both host and guest.`
-            }
-          }
-        ]
-      }
-    ]
-  },
+function init(){buildNav();showDay(0);}
 
-  {
-    id: 4,
-    label: 'Day 5',
-    date: 'Fri May 29',
-    theme: 'Pilgrimage as Practice',
-    sites: 'Cosán na Naomh · local walking route · Brandon Creek',
-    note: `Today the walking is the exercise. The Cosán na Naomh runs 17.7 kilometers from Ventry Strand to the foot of Mount Brandon. Whether you walk part of it or all of it, the exercises are organized around what the body knows that the mind does not — and what it takes to find out.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Pilgrimage walk · Cosán na Naomh',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'teal',
-            title: 'Walking as a different kind of knowing',
-            duration: 'Throughout the walk',
-            invitation: `Every twenty minutes on the walk, stop for sixty seconds. Do not sit. Stand, and notice what your body is registering at that moment — not what you think about the walk, but what the walk is doing to your body. Feet, breath, the pull of the uphill, the relief of the flat. At each stop, write three words: what your feet feel, what your breathing is doing, and one thing you notice that you had not noticed while moving.`,
-            prompt: `Collect your stop-notes across the walk. At the end: which stop produced the most unexpected three words? Why that moment?`,
-            deeper: {
-              tradition: `Desert tradition · bodily ascesis · peregrinatio`,
-              text: `The <em>peregrini</em> who sailed from this peninsula in open boats understood the body not as an obstacle to spiritual practice but as its instrument. Their voyages were not journeys to a destination — Brendan's <em>Navigatio</em> is a circular structure that returns him to Ireland changed, not installed elsewhere. The walk is the same: a circular return, the same body with a different interior. The stops are not rest. They are the moments when the moving mind pauses long enough to notice what the moving body has been registering all along.`
-            }
-          },
-          {
-            icon: '◬', iconClass: 'gold',
-            title: 'Brandon Creek — standing at the departure point',
-            duration: '15 min · at the Creek',
-            invitation: `Brandon Creek is where Brendan is said to have departed on his voyage. Stand at the water's edge and face outward. You are at the end of the land. The next landfall in this direction — depending on the angle — is Iceland, Greenland, or Newfoundland. The monks who left from here did not know what was there. They called it the Promised Land of the Saints and went looking. You do not need to share their theology to feel what it means to stand at the edge of the known and face the unknown. Feel it.`,
-            prompt: `One thing you would cast off from here if you could — not dramatically, honestly. Write it. You do not need to show this to anyone.`,
-            deeper: {
-              tradition: `Navigatio Sancti Brendani · peregrinatio pro Christo`,
-              text: `The Irish practice of <em>peregrinatio pro Christo</em> — exile for Christ — involved leaving one's homeland permanently as an act of spiritual renunciation. The ocean was the ultimate desert: exposed, boundless, without the anchoring landmarks of the familiar world. Brendan's great whale, mistaken for an island, taught that trust in the creator should outweigh fear of the creature. Jesus's words to Simon Peter — <em>duc in altum</em>, put out into the deep — were spoken at a shoreline not unlike this one. The Creek does not ask for religious belief.<br><br>One thing Jones's scholarship on the <em>Navigatio</em> makes clear: Brendan's voyage was circular. He was instructed to return to his monastery at Clonfert before he could die. The Promised Land was real, but the earthly home was also the destination. The monks who left from this creek knew — or believed — that departure bends back toward itself. The courage of leaving when you know you will return is a different courage from the courage of not knowing. Both are present at this shore. Which kind does this moment ask of you? It asks what you would be willing not to know. That is a different kind of question, and it belongs to everyone.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Independent journaling · consultations',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'coral',
-            title: 'What the walk gave and what it took',
-            duration: '20 min · journaling',
-            invitation: `The walk today asked something of your body. Sit with that for a moment before you write. Then: what did the walk give you that you did not have this morning? And what did it take — what thought or preoccupation or interior noise was still with you at the start that is quieter now? Both the giving and the taking are worth noting. The body earns things by its effort that the sedentary mind cannot.`,
-            prompt: `Given: one thing. Taken: one thing. Then: what is the difference between them, and where do you feel it?`,
-            deeper: {
-              tradition: `Ignatian · consolation without cause · Muir`,
-              text: `Ignatius wrote about <em>consolación sin causa</em> — grace that arrives without a preceding thought or effort, unexpectedly, as pure gift. The walk produces versions of this: a view around a bend, a quality of light, a moment of purely physical relief that carries something more than relief. Muir described the Achilles-Hector poem arriving "almost complete, at one sitting" — the body of work produced by the unconscious mind surfacing while the conscious mind was occupied with movement. The walk loosens something. The afternoon journaling catches what was loosened.`
-            }
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: 5,
-    label: 'Day 6',
-    date: 'Mon Jun 1',
-    theme: 'Living Traditions',
-    sites: 'Community engagement · local speaker · tradition bearer',
-    note: `Today you encounter the living tradition — not stones and texts but a person whose life is continuous with everything you have been reading and walking through. The primary exercise is listening. The secondary exercise is noticing what you bring to the listening.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Seminar · ritual continuity · folk Catholicism',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'gold',
-            title: 'Preparing interior hospitality',
-            duration: '10 min · before the community session',
-            invitation: `Before you meet the tradition bearer or local speaker today, take ten minutes to name — honestly, to yourself — what you expect to hear. What assumptions are you bringing about what "local tradition" looks like, sounds like, means? Write three sentences: what you expect to be confirmed, what you expect to be surprised by, and what you are hoping for. You are preparing to have your expectations altered. That requires first knowing what they are.`,
-            prompt: `Your three sentences. Keep them for the end of the day.`,
-            deeper: {
-              tradition: `Desert tradition · xenia · hospitality`,
-              text: `The desert tradition taught that the visitor brings God — that the stranger's arrival is always potentially an encounter with the sacred. The corollary is that the host must be prepared: interior hospitality, not just physical welcome. The monks of Reask, connected to the Mediterranean trade networks while living on a windswept Kerry promontory, practiced this hospitality across cultures and centuries. Today you are the guest. The tradition bearer is the host. The exercise in interior hospitality is the preparation to actually receive what is offered, rather than confirming what you already thought.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Storytelling session · reflection',
-        exercises: [
-          {
-            icon: '◑', iconClass: 'teal',
-            title: 'What the tradition holds that you cannot hold',
-            duration: '15 min · after the session',
-            invitation: `After the community engagement: what did the tradition bearer carry that you cannot carry for them? Not their skill or their knowledge — something more particular. A relationship to time, or to place, or to the dead, or to language. Something that belongs to a life lived in continuity with this land rather than passing through it. Notice the difference between what you can understand of that and what you can only observe.`,
-            prompt: `What can you observe but not possess? One sentence. Then: what can you carry from today that is genuinely yours?`,
-            deeper: {
-              tradition: `Gallagher · reconciliatio oppositorum · anam cara`,
-              text: `Gallagher described his method as making apparent opposites sit down and listen to each other over good whiskey. The tradition bearer and the general-population student represent exactly this encounter: one formed by continuity with the place, one formed by passage through it. John O'Donohue's concept of the <em>anam cara</em> — soul friend — is the one with whom you can be fully known across difference. You will not become an anam cara with a stranger in one afternoon. But you can practice the quality of attention that makes such friendship possible. That quality is the transferable skill.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'evng',
-        label: 'Evening — communal sound',
-        sub: 'Traditional music session (optional)',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'purple',
-            title: 'Session listening — music as threshold',
-            duration: 'Throughout the session',
-            invitation: `If you attend the traditional music session tonight: resist recording or analyzing. Let the music enter through the body, not through the interpreting mind. The <em>musica instrumentalis</em> of the Boethian daily rhythm closes the day not with conclusion but with resonance — the sound that continues after the source stops. Let yourself be changed by tonight's sound before you decide what it means.`,
-            prompt: `After: one emotion that does not yet have a name. Write around it, not at it. Three sentences that approach it from different angles.`,
-            deeper: {
-              tradition: `Mackay Brown · Celtic · musica instrumentalis`,
-              text: `Mackay Brown's Orkney was filled with fiddle music, drinking songs, and the slow ballads of the fishing tradition. His poem "Beachcomber" ends on Sunday — "for fear of the elders / I sit on my bum." The Sabbath silence that precedes the week's resumption is the space after music, the resonance. The <em>sean-nós</em> tradition understands music as a passage between worlds — not literally, but phenomenologically. Something shifts in the listener that cannot be fully accounted for. The exercise is to notice the shift before the accounting begins.`
-            }
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: 6,
-    label: 'Day 7',
-    date: 'Tue Jun 2',
-    theme: 'Pilgrimage & the Body',
-    sites: 'Mount Brandon (western or eastern approach) · Kilmalkedar alternative',
-    note: `The mountain is the major physical encounter of the course. Whether you take the western approach via the Saints' Road or the eastern approach through the glaciated valley, the exercises are built around what effort reveals — and what the summit, or the decision about the summit, requires.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Mount Brandon ascent · embodied spirituality · silence',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'coral',
-            title: 'Endurance as a form of attention',
-            duration: 'On the ascent — throughout',
-            invitation: `When fatigue arrives on the mountain — and it will — do not push through it and do not simply stop. Pause and attend to it. Notice what the fatigue is actually made of: is it muscular, respiratory, mental, motivational? Notice where in your body it lives. Notice what thought arrives alongside it — and whether that thought is true, or habitual. The mountain strips away the distinction between what you think you are and what you actually are at this moment. That is not comfortable. It is accurate.`,
-            prompt: `At the physical summit or at your chosen turning point: what did you carry up that you can leave here? Write it. Speak it aloud if you are willing. The mountain does not need to hear it. You do.`,
-            deeper: {
-              tradition: `Desert tradition · bodily ascesis · Mount Brandon pilgrimage`,
-              text: `The summit of Mount Brandon has been a pilgrimage destination since at least the 5th century — pilgrims gathering on St. Brendan's feast day (May 16) and on <em>Domhnach Chrom Dubh</em>, the last Sunday of July, a date layered over the pre-Christian harvest festival of Lughnasadh. The mountain holds both the Christian and the older thing simultaneously. The body's ascent through the physical difficulty of altitude and weather is not incidental to the pilgrimage — it is the pilgrimage. What the body earns by effort is different in quality from what the mind receives by reading. Both are real. Today belongs to the body.`
-            }
-          },
-          {
-            icon: '◑', iconClass: 'teal',
-            title: 'Grace that arrives unbidden',
-            duration: 'On the descent',
-            invitation: `On the way down — when the effort has been made and the direction is now with gravity rather than against it — be open. Not deliberately seeking, but available. A view that arrives around a bend. A quality of light on the paternoster lakes. A moment of purely physical ease. Something will happen that you did not earn by effort and did not expect. Notice it without immediately explaining it. Hold it for a moment in the state of not-yet-meaning.`,
-            prompt: `Where did something arrive unbidden today? Three sentences — without explanation, just description. Let the event be what it was before you decide what it means.`,
-            deeper: {
-              tradition: `Ignatian · consolación sin causa · Heaney's Postscript`,
-              text: `Heaney's "Postscript" describes driving the Clare coast "when the wind / and the light are working off each other" and the ocean simultaneously wild and the inland lake lit by "the earthed lightning of a flock of swans." The poem's great claim is the final movement: it "catches you off guard and makes you cry." The crying is not prepared for. It arrives without cause. Ignatius called this <em>consolación sin causa</em> — consolation without a preceding thought, pure gift. On the mountain descent, with the body relaxed after effort and the mind no longer occupied with navigation, the conditions for this kind of arrival are unusually good. Be available.`
-            }
-          },
-          {
-            icon: '◬', iconClass: 'gold',
-            title: 'One non-human witness',
-            duration: '10 min at rest · anywhere on the route',
-            invitation: `Find a resting place and spend ten minutes attending to a single non-human element: a plant growing from a rock face, a wind pattern visible in the grass, a bird call, the color of water in a lake. Attend to it as if it were trying to tell you something — not as if it were speaking, but as if it had a perspective that yours lacks. What does it know about duration that you have forgotten? What does it know about this specific place that you have not yet learned?`,
-            prompt: `Three sentences from the perspective of what you attended to. Give it opinions. Let it be mildly impatient with you.`,
-            deeper: {
-              tradition: `Celtic creation theology · Mackay Brown · environmental stewardship`,
-              text: `The Celtic monastic tradition held that the natural world was a second scripture — that creation spoke of its creator with the same authority as the written Word, but in a different language requiring a different kind of literacy. The monks at Fahan and Reask did not treat the landscape as backdrop; they built their cells in response to it, oriented their oratories by it, kept their animals as part of the community. Mackay Brown's fishermen exist in the same reciprocal relationship: the sea gives and takes; they give and take in return. The non-human element has been here longer than the monastery and will be here longer than this course.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — interior ordering',
-        sub: 'Integration reflection · paper workshop',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'purple',
-            title: 'What the mountain taught',
-            duration: '20 min · journaling',
-            invitation: `What did today's ascent teach your body that your mind would not have learned from reading? Be specific — not "I learned I am stronger than I thought" (that is a conclusion) but "at the point where my breathing became ragged and the path steepened, I noticed that I..." Write from that specific moment. The specific moment is always more true than the general lesson.`,
-            prompt: `One specific moment from the ascent. What happened in your body. What thought arrived alongside it. What you did next.`,
-            deeper: {
-              tradition: `Muir · the mind beneath the mind`,
-              text: `Muir wrote about the Achilles-Hector poem: "An untapped part of my mind supplied what my conscious recollection left out, and I could at last see the incident whole." The body on the mountain supplies what the conscious mind leaves out — it registers things the mind is too busy navigating to notice. The afternoon journaling is the act of recovering what the body registered. It is not reflection on the day; it is the continuation of the day by other means.`
-            }
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: 7,
-    label: 'Day 8',
-    date: 'Wed Jun 3',
-    theme: 'Global Pilgrimage & Integration',
-    sites: 'Lightning Talks · comparative seminar · Course Closing Circle',
-    note: `The last day of instruction. The exercises today run in both directions — outward toward the global traditions you have been comparing, and inward toward what this specific place has given you. The Closing Circle is the moment the course asks you to speak what you have found, not what you have learned.`,
-    rhythm: [
-      {
-        band: 'morn',
-        label: 'Morning — attunement',
-        sub: 'Lightning Talks · Camino · Hajj · Kumano Kodo · Closing Circle',
-        exercises: [
-          {
-            icon: '◎', iconClass: 'teal',
-            title: 'Collecting the journey — six things',
-            duration: '15 min · before Lightning Talks',
-            invitation: `Before you present your Lightning Talk: sit quietly and gather the course. Name one thing from each of the eight days — not the most important thing, not the most interesting thing, but the thing that has changed your body rather than only your mind. The thing you will still be carrying when the intellectual content has settled. Six items. One sentence each. You do not need to share all of them.`,
-            prompt: `Your six items. Which one surprises you to find on the list?`,
-            deeper: {
-              tradition: `Desert tradition · memoria · Mackay Brown's weekly return`,
-              text: `The Abba Poemen taught that the monk must periodically <em>re-collect</em> what the journey has scattered — gather the attention back from where it has dispersed across weeks of experience. Mackay Brown's Beachcomber does this weekly: each day, what the sea returned. The course has been returning things to you each day. The act of collection before departure is both a spiritual and a practical discipline. What you gather consciously, you carry. What you leave ungathered disappears faster than you expect.`
-            }
-          },
-          {
-            icon: '◑', iconClass: 'gold',
-            title: 'The sentence that belongs to both traditions',
-            duration: '10 min · before or after Lightning Talk',
-            invitation: `You have spent this week in one pilgrimage tradition and you have been thinking about another — Camino, Hajj, Kumano Kodo, or another of your choosing. A useful framework: scholar Sandra Jones identifies three geometries of pilgrimage in the medieval sources. Brendan's voyage is <strong>the cycle</strong> — circular, anchored by the monastic calendar, the sea a structured testing ground. Sigeric's itinerary is <strong>the line</strong> — strict, horizontal, the land a measurable barrier to cross. The Wanderer's exile is <strong>the void</strong> — aimless drift, resolved only by vertical ascension. Your chosen tradition has a geometry. Dingle has a geometry. Write one sentence that could belong to both traditions. Then write one sentence that could belong to neither. Look at both sentences. Which is truer? The answer is not obvious, and the not-obviousness is the point.`,
-            prompt: `Your two sentences. Then: one word that describes the space between them.`,
-            deeper: {
-              tradition: `Gallagher · reconciliatio oppositorum · comparative sacred travel`,
-              text: `Gallagher's method of making unlike things sit together is precisely this: not looking for what they share in common (a superficial exercise), but finding the place where they are genuinely foreign to each other, and staying in that foreignness long enough to learn from it. The Hajj and the <em>peregrinatio</em> share almost no external features. What they share is the act of deliberate departure and the irreversible change it produces. That sharing is not trivial. But neither is the difference. Hold both.`
-            }
-          },
-          {
-            icon: '◬', iconClass: 'coral',
-            title: 'Closing blessing — your own words',
-            duration: '5–10 min · before or in the Closing Circle',
-            invitation: `Compose a blessing for this landscape in your own words. Not a prayer if that word is not yours. An acknowledgment. A farewell. A sentence addressed to the Dingle Peninsula, to the Atlantic, to the stone, to whatever it is that has been present while you walked. It does not need to be beautiful. It needs to be true. Speak it aloud in the Closing Circle if you are willing. The circle is the place where what you have found becomes real by being spoken.`,
-            prompt: `Complete these three sentences — not as a formula but as a beginning: "Dingle, I leave you carrying ___." "I leave behind ___." "I return to my ordinary life with the question ___."`,
-            deeper: {
-              tradition: `Celtic · caim · O'Donohue · Ó Tuama`,
-              text: `O'Donohue wrote that blessing is "the act of paying close attention and wishing someone well in the same breath." Ó Tuama's blessing ends: "when the journey is over, / may you carry it lightly — / the weight of all you've gathered / worn thin as stone by water." The stone worn by water is still stone. The weight does not disappear; it becomes portable. The closing blessing is the act of making the weight of this week portable — of knowing what you are carrying before you re-enter the ordinary world that will immediately offer you other weights to carry instead.`
-            }
-          }
-        ]
-      },
-      {
-        band: 'aftn',
-        label: 'Afternoon — closing',
-        sub: 'Journals collected · course ends',
-        exercises: [
-          {
-            icon: '◈', iconClass: 'purple',
-            title: 'The question you arrived with and the question you leave with',
-            duration: '10 min · final journal entry',
-            invitation: `Before you hand in your journal: write the question you arrived in Dingle with — not a question you knew you had, but the one that was already operating in you before the course began, that the course has now made visible. Then write the question you are leaving with. They may be the same question with more clarity. They may be different questions entirely. The movement from the first to the second is the course.`,
-            prompt: `Question arrived with. Question leaving with. One sentence connecting them.`,
-            deeper: {
-              tradition: `Muir · Story and Fable · Gallagher · enlarging the mind`,
-              text: `Muir wrote that what we are not and can never be — our Fable — is "inconceivably interesting." The course has been one long encounter with the Fable of this landscape and with whatever portion of your own Fable the encounter has surfaced. Gallagher drew from Newman the wish that everyone would "enlarge their mind" — not toward any particular conclusion, but toward a greater capacity for real encounter. The question you are leaving with is evidence of enlargement. A question you did not arrive with, or the same question held differently, means the mind has moved. That is what a pilgrimage is for.`
-            }
-          }
-        ]
-      }
-    ]
-  }
-];
-
-/* ═══════════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════════ */
-let activeDay = 0;
-let deeperOpen = {};
-
-/* ═══════════════════════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════════════════════ */
-function init(){
-  buildDayNav();
-  showDay(0);
+function buildNav(){
+  const nav=document.getElementById('day-nav');
+  nav.innerHTML=DAYS.map((d,i)=>`<button class="day-btn${i===0?' active':''}" onclick="showDay(${i})"><div class="db-label">${d.label}</div><div class="db-theme">${d.theme}</div></button>`).join('');
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DAY NAV
-═══════════════════════════════════════════════════════════ */
-function buildDayNav(){
-  const nav = document.getElementById('day-nav');
-  nav.innerHTML = DAYS.map((d,i) => `
-    <button class="day-btn${i===0?' active':''}" onclick="showDay(${i})" aria-label="${d.label}: ${d.theme}">
-      <div class="db-label">${d.label}</div>
-      <div class="db-theme">${d.theme}</div>
-    </button>`).join('');
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SHOW DAY
-═══════════════════════════════════════════════════════════ */
 function showDay(i){
-  activeDay = i;
-  document.querySelectorAll('.day-btn').forEach((b,j) => b.classList.toggle('active', j===i));
+  document.querySelectorAll('.day-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  const d=DAYS[i];
+  let html=`<div class="day-workspace visible"><div class="day-header"><div class="dh-day">${d.label} \u00b7 ${d.date}</div><div class="dh-title">${d.theme}</div><div class="dh-sites">${d.sites}</div></div>`;
 
-  const d = DAYS[i];
-  let html = `
-  <div class="day-workspace visible">
-    <div class="day-header">
-      <div class="dh-day">${d.label} · ${d.date}</div>
-      <div class="dh-title">${d.theme}</div>
-      <div class="dh-sites">${d.sites}</div>
-      <div class="dh-note">${d.note}</div>
-    </div>`;
+  if(i===0){html+=`<div class="syncletica-opener"><div class="so-label">Amma Syncletica \u00b7 opening voice \u00b7 Apophthegmata Patrum</div><div class="so-quote">&ldquo;Those who put out to sea at first sailed with a favourable wind; then the sails spread, but later the wind becomes adverse. Then the ship is tossed by the waves and is no longer controlled by the rudder. But when in a little while there is calm, and the tempest dies down, then the ship sails on again. So it is with us.&rdquo;</div><div class="so-attr">Amma Syncletica \u00b7 4th century \u00b7 hermit outside Alexandria</div><div class="so-intro">Syncletica was a 4th-century woman philosopher and teacher who lived as a hermit outside Alexandria with her blind sister. Twenty-eight of her sayings were preserved in the desert tradition alongside those of the Abbas. She opens these exercises because she spoke most directly about the sea \u2014 and because the ship she describes is the one you are now on.</div></div>`;}
 
-  if(i === 1){
-    html += `
-    <div class="gallarus-note">
-      <div class="gn-label">Heaney on Gallarus · "In Gallarus Oratory" (1969)</div>
-      <p>Seamus Heaney's poem about entering Gallarus Oratory describes the experience with physical precision: entering as "dropping, a reduced creature, to the heart of the globe," the walls "yard thick" pressing out the light of heaven — and then the emergence, "steeped in air, dazzled." The poem is in your reading packet. Read it before you enter the building. Read it again after you come out. Notice which reading is truer.</p>
-      <p>The poem is in the poetry portal under Day 7. Its memorization practice — "earthed lightning," the body changed by a specific physical encounter — belongs to this day as much as to any other.</p>
-    </div>`;
-  }
+  html+=`<div class="governing-q"><div class="gq-label">Today&apos;s governing question</div><div class="gq-text">${d.question}</div>${d.qnote?`<div class="gq-note">${d.qnote}</div>`:''}</div>`;
 
-  d.rhythm.forEach(band => {
-    html += `
-    <div class="rhythm-band">
-      <div class="rb-pip ${band.band}"></div>
-      <div class="rb-label ${band.band}">${band.label}</div>
-      <div class="rb-sub">· ${band.sub}</div>
-    </div>`;
+  if(d.light){html+=`<div class="day1-space"><div class="ds-label">Space for arrival</div><div class="ds-prompt">The exercises below are available, but the first instruction is simply: arrive. Let Dingle do what it does before you ask anything of it.</div></div>`;}
 
-    band.exercises.forEach((ex, ei) => {
-      const key = `${i}-${band.band}-${ei}`;
-      const isOpen = deeperOpen[key] || false;
-      const hasSaying = ex.deeper && ex.deeper.saying;
+  if(d.oFaolainPoem){html+=`<div style="margin-bottom:1.5rem"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.75rem">Simon O Faolain \u00b7 &ldquo;Back West&rdquo; / &ldquo;Thiar&rdquo; \u00b7 As Gaineamh (Coisceim, 2011)</div><div class="bilingual-block"><div class="bl-col"><div class="bl-lang">Irish</div><div class="bl-text">An chuinne seo den bhaile fearainn
+Mar nach bhfuil na pairceanna neata,
+Ach iad beag neamhrialta, breac le boirneoga,
+Ar nos chnuas de chealla ailse i bhfiochain slainiuil,
+No a mhalairt iomlain de sceal.
 
-      html += `
-      <div class="ex-card">
-        <div class="ex-head">
-          <div class="ex-icon ${ex.iconClass}">${ex.icon}</div>
-          <div class="ex-meta">
-            <div class="ex-title">${ex.title}</div>
-            <div class="ex-duration">${ex.duration}</div>
-          </div>
-        </div>
-        <div class="ex-body">
-          <div class="ex-invitation">${ex.invitation}</div>
-          <div class="ex-prompt">${ex.prompt}</div>
-          ${ex.deeper ? `
-          <button class="deeper-toggle${isOpen?' open':''}" onclick="toggleDeeper('${key}')" aria-expanded="${isOpen}">
-            <span class="dt-arrow">▶</span>
-            <span>Tradition &amp; source</span>
-          </button>
-          <div class="deeper-note${isOpen?' visible':''}" id="dn-${key}">
-            <div class="dn-tradition">${ex.deeper.tradition}</div>
-            ${ex.deeper.text}
-            ${hasSaying ? `<div class="dn-saying">${ex.deeper.saying}</div>` : ''}
-          </div>` : ''}
-        </div>
-      </div>`;
+B'fheidir go bhfeadfai an run seo a fhuascailt,
+An ortha a bhriseadh,
+da mbeadh na focail cui ann &mdash;
+
+Ach ta tost toll laistigh
+agus tost amugh.</div></div><div class="bl-col"><div class="bl-lang">English</div><div class="bl-text">This corner of the townland
+Where the fields are not neat and rectangular
+But small and irregular, speckled with boulders,
+Like a cluster of cancer cells in healthy tissue
+Or the absolute opposite.
+
+Perhaps the riddle could be untied,
+the spell broken,
+Had we the correct words &mdash;
+
+But there is a hollow silence within
+and silence has slipped the leash.</div></div></div></div>`;}
+
+  if(d.winnowingPoem){html+=`<div style="margin-bottom:1.5rem"><div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:0.75rem">Simon O Faolain \u00b7 &ldquo;Winnowing&rdquo; / &ldquo;Ag Caitheadh&rdquo; \u00b7 Anam Mhadra (Coisceim, 2008)</div><div class="bilingual-block"><div class="bl-col"><div class="bl-lang">Irish</div><div class="bl-text">Seo linn ag iarraidh
+feidirtheachtai eigriochta an tsaoil
+a scaradh o
+na cuinsi teoranta ab ail linn.
+
+Ag an de deiridh
+n'fheadar aoinne againn
+cioca e
+an caith no
+an grainne
+a scaoileadh le gaoth.</div></div><div class="bl-col"><div class="bl-lang">English</div><div class="bl-text">Here we go, trying
+to separate
+the infinite possibilities of life
+from the limited circumstances
+we prefer.
+
+At the last breath
+none of us know
+whether it was
+the chaff
+or the grain
+that flew off in the wind.</div></div></div></div>`;}
+
+  const filmNotes={"Song of the Sea \u00b7 Cartoon Saloon (2014)":"Tomm Moore's animated film engages the selkie mythology of the Atlantic coast \u2014 beings who live between worlds. The selkie's longing is the ubi sunt in animated form. Count this as a lecture hour.","The Secret of Kells \u00b7 Cartoon Saloon (2009)":"Moore and Twomey's film dramatizes the creation of the Book of Kells inside a monastery under Viking siege. The film's monastery is what you walked through today at Gallarus and Kilmalkedar. Count this as a lecture hour.","Wolfwalkers \u00b7 Cartoon Saloon (2020)":"This film's animism and the tension between the wild and the institutional maps onto the living traditions encounter. Watch it as preparation for tomorrow's Minard ceremony. Count this as a lecture hour."};
+
+  d.rhythm.forEach(band=>{
+    html+=`<div class="rhythm-band"><div class="rb-pip ${band.band}"></div><div class="rb-label ${band.band}">${band.label}</div><div class="rb-sub">\u00b7 ${band.sub}</div></div>`;
+    if(band.band==='evng'&&filmNotes[band.sub]){html+=`<div class="film-card"><div class="film-icon">&#9654;</div><div class="film-meta"><div class="film-title">${band.sub.split(' \u00b7 Cartoon')[0]}</div><div class="film-sub">${band.sub}</div><div class="film-note">${filmNotes[band.sub]}</div></div></div>`;}
+    band.exercises.forEach((ex,ei)=>{
+      const key=`${i}-${band.band}-${ei}`;
+      const isOpen=deeperOpen[key]||false;
+      html+=`<div class="ex-card"><div class="ex-head"><div class="ex-icon ${ex.iconClass}">${ex.icon}</div><div class="ex-meta"><div class="ex-title">${ex.title}</div><div class="ex-duration">${ex.duration}</div></div></div><div class="ex-body"><div class="ex-invitation">${ex.invitation}</div><div class="ex-prompt">${ex.prompt}</div>${ex.deeper?`<button class="deeper-toggle${isOpen?' open':''}" onclick="toggleDeeper('${key}')"><span class="dt-arrow">&#9658;</span><span>Tradition &amp; source</span></button><div class="deeper-note${isOpen?' visible':''}" id="dn-${key}"><div class="dn-tradition">${ex.deeper.tradition}</div>${ex.deeper.text}${ex.deeper.saying?`<div class="dn-saying">${ex.deeper.saying}</div>`:''}</div>`:''}</div></div>`;
     });
   });
-
-  html += `</div>`;
-  document.getElementById('workspace').innerHTML = html;
-  window.scrollTo({top: document.getElementById('day-nav').offsetTop - 20, behavior:'smooth'});
+  html+=`</div>`;
+  document.getElementById('workspace').innerHTML=html;
+  window.scrollTo({top:document.getElementById('day-nav').offsetTop-20,behavior:'smooth'});
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DEEPER TOGGLE
-═══════════════════════════════════════════════════════════ */
 function toggleDeeper(key){
-  deeperOpen[key] = !deeperOpen[key];
-  const note = document.getElementById(`dn-${key}`);
-  const btn = note ? note.previousElementSibling : null;
-  if(note) note.classList.toggle('visible', deeperOpen[key]);
-  if(btn){
-    btn.classList.toggle('open', deeperOpen[key]);
-    btn.setAttribute('aria-expanded', deeperOpen[key]);
-  }
+  deeperOpen[key]=!deeperOpen[key];
+  const note=document.getElementById(`dn-${key}`);
+  const btn=note?note.previousElementSibling:null;
+  if(note)note.classList.toggle('visible',deeperOpen[key]);
+  if(btn){btn.classList.toggle('open',deeperOpen[key]);btn.setAttribute('aria-expanded',deeperOpen[key]);}
 }
 
-/* ═══════════════════════════════════════════════════════════
-   GLOSSARY TOGGLE
-═══════════════════════════════════════════════════════════ */
 function toggleGlossary(){
-  const body = document.getElementById('gloss-body');
-  const head = document.getElementById('gloss-head');
-  const isOpen = body.classList.contains('visible');
-  body.classList.toggle('visible', !isOpen);
-  head.classList.toggle('open', !isOpen);
+  const body=document.getElementById('gloss-body');
+  const head=document.getElementById('gloss-head');
+  body.classList.toggle('visible');
+  head.classList.toggle('open');
 }
 
 init();
+
 </script>
 </body>
 </html>
